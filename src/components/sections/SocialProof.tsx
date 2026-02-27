@@ -46,7 +46,7 @@ function CountUp({
 
 const metrics = [
     { value: 30, suffix: "%", prefix: "-", label: "Temps administratif en moins", delay: 0 },
-    { value: 2, suffix: "x", prefix: "x", label: "Vitesse de traitement", delay: 0.2 },
+    { value: 2, suffix: "x", prefix: "", label: "Vitesse de traitement", delay: 0.2 },
     { value: 100, suffix: "%", prefix: "", label: "Traçabilité des données", delay: 0.4 }
 ];
 
