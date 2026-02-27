@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { CheckCircle2 } from "lucide-react";
+import Image from "next/image";
 
 const pillars = [
     {
@@ -44,16 +45,23 @@ export function WhyNira() {
                             Les outils no-code sont accessibles, mais créer des systèmes robustes, scalables et sécurisés requiert une expertise d'ingénierie.
                         </p>
 
-                        <div className="flex items-center gap-4 text-sm font-medium text-gray-300">
-                            <div className="flex -space-x-3">
-                                {/* Avatars placeholders */}
-                                {[1, 2, 3].map((i) => (
-                                    <div key={i} className="w-10 h-10 rounded-full border-2 border-nira-dark bg-gray-800 flex items-center justify-center overflow-hidden">
-                                        <div className="w-full h-full bg-gradient-to-br from-gray-700 to-gray-600"></div>
-                                    </div>
-                                ))}
+                        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 group">
+                            <div className="relative w-24 h-24 md:w-32 md:h-32 rounded-2xl border-2 border-white/10 bg-white/5 overflow-hidden transition-all duration-500 group-hover:border-nira-blue/50 group-hover:scale-[1.02] shadow-2xl">
+                                <Image
+                                    src="/images/experts/alexandre.jpg"
+                                    alt="Alexandre Lin"
+                                    fill
+                                    className="object-cover"
+                                    priority
+                                />
+                                {/* Placeholder gradient back-up */}
+                                <div className="absolute inset-0 bg-gradient-to-br from-nira-blue/20 to-purple-500/20 -z-10" />
                             </div>
-                            <span>Une équipe de passionnés.</span>
+                            <div className="flex flex-col gap-1">
+                                <span className="text-white font-bold text-xl md:text-2xl leading-tight tracking-tight">Alexandre Lin</span>
+                                <span className="text-nira-blue text-sm md:text-base font-semibold uppercase tracking-wider">Head of Tech & Innovation</span>
+                                <div className="w-12 h-0.5 bg-nira-blue mt-2 opacity-50"></div>
+                            </div>
                         </div>
                     </motion.div>
 
