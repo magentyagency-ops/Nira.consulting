@@ -1,15 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-
-/*
- * MARQUEE APPROACH:
- *   - Use raw <img> tags (no Next.js Image lazy-load interference)
- *   - Exactly 2 identical copies side-by-side
- *   - CSS translates from 0 to -50% → seamless because both halves are identical
- *   - Fixed row height prevents layout shifts
- *   - will-change: transform → GPU compositing, buttery smooth
- */
+import { useEffect, useRef, useState } from "react";
 
 const logos = [
     { name: "Client 1", src: "/images/logos/1.png" },
@@ -20,8 +12,29 @@ const logos = [
     { name: "Client 6", src: "/images/logos/6.png" },
 ];
 
-function MarqueeRow({ direction = "left" }: { direction?: "left" | "right" }) {
-    const animClass = direction === "left" ? "marquee-left" : "marquee-right";
+function MarqueeRow({ direction = "left", speed = 25 }: { direction?: "left" | "right"; speed?: number }) {
+    const containerRef = useRef<HTMLDivElement>(null);
+    const [contentWidth, setContentWidth] = useState(0);
+
+    useEffect(() => {
+        if (!containerRef.current) return;
+
+        // Mesurer la largeur d'un seul jeu de logos après rendu
+        const firstSet = containerRef.current.querySelector("[data-set='first']") as HTMLElement;
+        if (firstSet) {
+            setContentWidth(firstSet.offsetWidth);
+        }
+
+        // Recalculer en cas de resize
+        const handleResize = () => {
+            const el = containerRef.current?.querySelector("[data-set='first']") as HTMLElement;
+            if (el) setContentWidth(el.offsetWidth);
+        };
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
+
+    const duration = contentWidth > 0 ? contentWidth / speed : 30;
 
     return (
         <div className="relative overflow-hidden">
@@ -29,36 +42,65 @@ function MarqueeRow({ direction = "left" }: { direction?: "left" | "right" }) {
             <div className="absolute left-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
             <div className="absolute right-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
 
-            {/* Bande qui défile — contient 2x le jeu de logos */}
-            <div className={`flex will-change-transform ${animClass}`}>
-                {/* Copie 1 */}
-                {logos.map((logo, i) => (
-                    <div key={`a-${i}`} className="shrink-0 flex items-center justify-center px-6 md:px-10 lg:px-14">
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
-                            src={logo.src}
-                            alt={logo.name}
-                            loading="eager"
-                            decoding="async"
-                            className="h-14 md:h-20 lg:h-24 w-auto object-contain select-none grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-500"
-                            draggable={false}
-                        />
-                    </div>
-                ))}
-                {/* Copie 2 — identique */}
-                {logos.map((logo, i) => (
-                    <div key={`b-${i}`} className="shrink-0 flex items-center justify-center px-6 md:px-10 lg:px-14">
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
-                            src={logo.src}
-                            alt={logo.name}
-                            loading="eager"
-                            decoding="async"
-                            className="h-14 md:h-20 lg:h-24 w-auto object-contain select-none grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-500"
-                            draggable={false}
-                        />
-                    </div>
-                ))}
+            <div ref={containerRef} className="flex w-max">
+                {/* Jeu 1 */}
+                <motion.div
+                    data-set="first"
+                    className="flex shrink-0"
+                    animate={contentWidth > 0 ? {
+                        x: direction === "left" ? [0, -contentWidth] : [-contentWidth, 0],
+                    } : undefined}
+                    transition={contentWidth > 0 ? {
+                        x: {
+                            duration: duration,
+                            repeat: Infinity,
+                            ease: "linear",
+                            repeatType: "loop",
+                        },
+                    } : undefined}
+                >
+                    {logos.map((logo, i) => (
+                        <div key={`a-${i}`} className="shrink-0 flex items-center justify-center px-8 md:px-14 lg:px-16">
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img
+                                src={logo.src}
+                                alt={logo.name}
+                                loading="eager"
+                                className="h-16 md:h-24 lg:h-28 w-auto max-w-[200px] md:max-w-[280px] object-contain select-none grayscale opacity-30 hover:grayscale-0 hover:opacity-100 transition-all duration-500"
+                                draggable={false}
+                            />
+                        </div>
+                    ))}
+                </motion.div>
+
+                {/* Jeu 2 — copie identique pour la boucle */}
+                <motion.div
+                    className="flex shrink-0"
+                    animate={contentWidth > 0 ? {
+                        x: direction === "left" ? [0, -contentWidth] : [-contentWidth, 0],
+                    } : undefined}
+                    transition={contentWidth > 0 ? {
+                        x: {
+                            duration: duration,
+                            repeat: Infinity,
+                            ease: "linear",
+                            repeatType: "loop",
+                        },
+                    } : undefined}
+                >
+                    {logos.map((logo, i) => (
+                        <div key={`b-${i}`} className="shrink-0 flex items-center justify-center px-8 md:px-14 lg:px-16">
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img
+                                src={logo.src}
+                                alt={logo.name}
+                                loading="eager"
+                                className="h-16 md:h-24 lg:h-28 w-auto max-w-[200px] md:max-w-[280px] object-contain select-none grayscale opacity-30 hover:grayscale-0 hover:opacity-100 transition-all duration-500"
+                                draggable={false}
+                            />
+                        </div>
+                    ))}
+                </motion.div>
             </div>
         </div>
     );
@@ -81,10 +123,10 @@ export function TrustLogos() {
                 </h2>
             </motion.div>
 
-            {/* 2 rangées qui défilent en sens inverse */}
-            <div className="space-y-8 md:space-y-12">
-                <MarqueeRow direction="left" />
-                <MarqueeRow direction="right" />
+            {/* 2 rangées qui défilent */}
+            <div className="space-y-10 md:space-y-16">
+                <MarqueeRow direction="left" speed={25} />
+                <MarqueeRow direction="right" speed={20} />
             </div>
         </section>
     );
