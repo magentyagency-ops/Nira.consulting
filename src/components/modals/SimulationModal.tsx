@@ -75,8 +75,8 @@ function DropFolder({
             onDragLeave={handleDragLeave}
             onDrop={handleDrop}
             className={`w-full h-28 sm:h-32 rounded-2xl border-2 border-dashed flex flex-col items-center justify-center gap-2 transition-all duration-200 ${isOver
-                    ? "border-nira-blue bg-nira-blue/5 scale-[1.02] shadow-lg shadow-nira-blue/10"
-                    : "border-gray-300 bg-gray-50 hover:border-gray-400"
+                ? "border-nira-blue bg-nira-blue/5 scale-[1.02] shadow-lg shadow-nira-blue/10"
+                : "border-gray-300 bg-gray-50 hover:border-gray-400"
                 }`}
         >
             <FolderOpen className={`w-8 h-8 ${isOver ? "text-nira-blue" : "text-gray-300"} transition-colors`} />
@@ -146,6 +146,11 @@ export function SimulationModal() {
     const [niraBurst, setNiraBurst] = useState(false);
     const [dropHover, setDropHover] = useState(false);
 
+    // Time tracking
+    const startTimeRef = useRef<number | null>(null);
+    const [humanFinishTime, setHumanFinishTime] = useState<number | null>(null);
+    const [niraFinishTime, setNiraFinishTime] = useState<number | null>(null);
+
     const humanScore = humanDone.filter(Boolean).length;
 
     const resetGame = useCallback(() => {
@@ -156,6 +161,9 @@ export function SimulationModal() {
         setNiraProcessed(0);
         setNiraBurst(false);
         setDropHover(false);
+        startTimeRef.current = null;
+        setHumanFinishTime(null);
+        setNiraFinishTime(null);
     }, []);
 
     const handleClose = () => {
@@ -173,6 +181,7 @@ export function SimulationModal() {
         if (gameState !== "countdown") return;
         if (countdown <= 0) {
             setGameState("playing");
+            startTimeRef.current = performance.now();
             return;
         }
         const t = setTimeout(() => setCountdown((c) => c - 1), 1000);
@@ -199,7 +208,12 @@ export function SimulationModal() {
             const interval = setInterval(() => {
                 i++;
                 setNiraProcessed(i);
-                if (i >= TOTAL_FILES) clearInterval(interval);
+                if (i >= TOTAL_FILES) {
+                    clearInterval(interval);
+                    if (startTimeRef.current) {
+                        setNiraFinishTime(performance.now() - startTimeRef.current);
+                    }
+                }
             }, 60);
         }, 3000);
         return () => clearTimeout(burst);
@@ -210,7 +224,13 @@ export function SimulationModal() {
         if (gameState !== "playing") return;
         setHumanDone((prev) => {
             const next = [...prev];
-            next[fileId] = true;
+            if (!next[fileId]) {
+                next[fileId] = true;
+                // Check if finished
+                if (next.every(v => v) && startTimeRef.current) {
+                    setHumanFinishTime(performance.now() - startTimeRef.current);
+                }
+            }
             return next;
         });
     };
@@ -382,10 +402,10 @@ export function SimulationModal() {
 
                     {/* Nira drop complete */}
                     <div className={`w-full h-28 sm:h-32 rounded-2xl border-2 border-dashed flex flex-col items-center justify-center gap-2 ${niraProcessed >= TOTAL_FILES
-                            ? "border-green-300 bg-green-50"
-                            : niraBurst
-                                ? "border-nira-blue bg-nira-blue/5 animate-pulse"
-                                : "border-gray-200 bg-gray-50"
+                        ? "border-green-300 bg-green-50"
+                        : niraBurst
+                            ? "border-nira-blue bg-nira-blue/5 animate-pulse"
+                            : "border-gray-200 bg-gray-50"
                         }`}>
                         <FolderOpen className={`w-8 h-8 ${niraProcessed >= TOTAL_FILES ? "text-green-400" : niraBurst ? "text-nira-blue" : "text-gray-300"
                             }`} />
@@ -431,18 +451,22 @@ export function SimulationModal() {
                 transition={{ delay: 0.6 }}
                 className="flex items-center gap-10 sm:gap-16 mb-12"
             >
-                <div className="text-center">
+                <div className="text-center min-w-[120px]">
                     <div className="text-xs text-gray-400 uppercase tracking-widest font-semibold mb-2">Vous</div>
-                    <div className="text-5xl sm:text-6xl font-black text-gray-300 font-mono">{humanScore}</div>
-                    <div className="text-xs text-gray-400 mt-1">/{TOTAL_FILES} fichiers</div>
+                    <div className="text-4xl sm:text-5xl font-black text-gray-300 font-mono">
+                        {humanFinishTime ? `${(humanFinishTime / 1000).toFixed(1)}s` : "> 15s"}
+                    </div>
+                    <div className="text-xs text-gray-400 mt-1">
+                        {humanScore < TOTAL_FILES ? `${humanScore}/${TOTAL_FILES} fichiers` : "Terminé"}
+                    </div>
                 </div>
                 <div className="w-px h-20 bg-gray-200" />
-                <div className="text-center">
+                <div className="text-center min-w-[120px]">
                     <div className="text-xs text-nira-blue uppercase tracking-widest font-semibold mb-2">Nira</div>
-                    <div className="text-5xl sm:text-6xl font-black text-nira-blue font-mono drop-shadow-[0_0_20px_rgba(15,141,230,0.3)]">
-                        {niraProcessed}
+                    <div className="text-4xl sm:text-5xl font-black text-nira-blue font-mono drop-shadow-[0_0_20px_rgba(15,141,230,0.3)]">
+                        {niraFinishTime ? `${(niraFinishTime / 1000).toFixed(1)}s` : "..."}
                     </div>
-                    <div className="text-xs text-nira-blue/50 mt-1">/{TOTAL_FILES} fichiers</div>
+                    <div className="text-xs text-nira-blue/50 mt-1">Terminé ✓</div>
                 </div>
             </motion.div>
 
