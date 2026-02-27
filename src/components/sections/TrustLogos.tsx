@@ -25,7 +25,7 @@ function LogoItem({ logo }: { logo: { name: string; src: string } }) {
                 width={200}
                 height={80}
                 priority
-                className="h-12 md:h-16 lg:h-20 w-auto object-contain grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-500"
+                className="h-16 md:h-24 lg:h-32 w-auto object-contain grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-500"
             />
         </div>
     );
