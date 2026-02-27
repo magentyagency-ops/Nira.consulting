@@ -4,6 +4,7 @@ import { Hero } from "@/components/sections/Hero";
 import { Impact } from "@/components/sections/Impact";
 import { Approche } from "@/components/sections/Approche";
 import { UseCases } from "@/components/sections/UseCases";
+import { TrustLogos } from "@/components/sections/TrustLogos";
 import { WorkflowShowcase } from "@/components/sections/WorkflowShowcase";
 import { WhyNira } from "@/components/sections/WhyNira";
 import { SocialProof } from "@/components/sections/SocialProof";
@@ -20,6 +21,7 @@ export default function Home() {
       <Impact />
       <Approche />
       <UseCases />
+      <TrustLogos />
       <WorkflowShowcase />
       <WhyNira />
       <SocialProof />
