@@ -45,11 +45,11 @@ export async function submitAuditRequest(formData: FormData) {
             const resend = new Resend(apiKey);
             console.log("📨 Envoi de l'email via Resend...");
 
-            await resend.emails.send({
+            const { data: resendData, error: resendError } = await resend.emails.send({
                 // L'expéditeur doit être un domaine vérifié sur Resend (ex: onboarding@resend.dev pour les tests)
-                from: "Nira Automations <onboarding@resend.dev>",
-                // L'email où tu veux recevoir les demandes
-                to: ["contact@nira.consulting"], // Mettre l'email d'Alexandre/Clarence
+                from: "onboarding@resend.dev",
+                // L'email où tu veux recevoir les demandes (Onboarding mode: ton email de compte)
+                to: ["magenty.agency@gmail.com"],
                 subject: `Nouvelle demande d'audit de ${validData.name} (${validData.company || 'Indépendant'})`,
                 html: `
           <div style="font-family: sans-serif; padding: 20px; color: #111;">
@@ -63,6 +63,11 @@ export async function submitAuditRequest(formData: FormData) {
           </div>
         `,
             });
+
+            if (resendError) {
+                console.error("Erreur Resend détaillée :", resendError);
+                return { success: false, error: "Erreur envoi email: " + resendError.message };
+            }
         } else {
             // Mode simulation si pas de clé API (pour développement local)
             console.log("⚠️ Aucune clé RESEND_API_KEY trouvée. Simulation d'envoi :");
