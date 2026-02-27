@@ -14,7 +14,6 @@ const formSchema = z.object({
     name: z.string().min(2, "Le nom est trop court."),
     email: z.string().email("Cet email n'est pas valide."),
     company: z.string().optional(),
-    message: z.string().min(10, "Merci de nous en dire un peu plus (10 caractères min)."),
 });
 
 type FormData = z.infer<typeof formSchema>;
@@ -149,17 +148,7 @@ export function FinalCta() {
                                     {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>}
                                 </div>
 
-                                <div className="space-y-2">
-                                    <label htmlFor="message" className="text-sm font-medium text-nira-dark">Quel processus souhaitez-vous automatiser ?</label>
-                                    <textarea
-                                        {...register("message")}
-                                        id="message"
-                                        rows={4}
-                                        className="w-full px-4 py-3 rounded-xl border border-nira-gray/20 bg-gray-50 text-nira-dark focus:outline-none focus:ring-2 focus:ring-nira-blue/50 focus:bg-white transition-colors resize-none"
-                                        placeholder="Décrivez brièvement votre besoin ou le problème rencontré..."
-                                    ></textarea>
-                                    {errors.message && <p className="text-red-500 text-xs mt-1">{errors.message.message}</p>}
-                                </div>
+
 
                                 <Button size="lg" className="w-full group" disabled={isSubmitting}>
                                     <span className="relative z-10 flex items-center justify-center gap-2">

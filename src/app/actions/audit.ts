@@ -7,20 +7,18 @@ const auditSchema = z.object({
     name: z.string().min(2, "Le nom est trop court."),
     email: z.string().email("Cet email n'est pas valide."),
     company: z.string().optional(),
-    message: z.string().min(10, "Merci de nous en dire un peu plus (10 caractères min)."),
+    message: z.string().optional(),
 });
 
 export async function submitAuditRequest(formData: FormData) {
     try {
-        // 1. Extraire les données
         const data = {
             name: formData.get("name") as string,
             email: formData.get("email") as string,
             company: formData.get("company") as string,
-            message: formData.get("message") as string,
+            message: (formData.get("message") as string) || "Non renseigné",
         };
 
-        // 2. Valider avec Zod
         const parsed = auditSchema.safeParse(data);
 
         if (!parsed.success) {
@@ -31,24 +29,16 @@ export async function submitAuditRequest(formData: FormData) {
                     firstErrorMessage = errs[0].message;
                 }
             } catch (e) { }
-
             return { success: false, error: firstErrorMessage };
         }
 
         const validData = parsed.data;
-
-        // 3. Envoyer l'email via Resend
-        // Vérifier si une clé API est configurée
         const apiKey = process.env.RESEND_API_KEY;
 
         if (apiKey) {
             const resend = new Resend(apiKey);
-            console.log("📨 Envoi de l'email via Resend...");
-
-            const { data: resendData, error: resendError } = await resend.emails.send({
-                // L'expéditeur doit être un domaine vérifié sur Resend (ex: onboarding@resend.dev pour les tests)
+            const { error: resendError } = await resend.emails.send({
                 from: "onboarding@resend.dev",
-                // L'email où tu veux recevoir les demandes (Onboarding mode: ton email de compte)
                 to: ["magenty.agency@gmail.com"],
                 subject: `Nouvelle demande d'audit de ${validData.name} (${validData.company || 'Indépendant'})`,
                 html: `
@@ -57,31 +47,21 @@ export async function submitAuditRequest(formData: FormData) {
             <p><strong>Nom :</strong> ${validData.name}</p>
             <p><strong>Email :</strong> <a href="mailto:${validData.email}">${validData.email}</a></p>
             <p><strong>Entreprise :</strong> ${validData.company || "Non renseigné"}</p>
-            <hr style="border: 0; border-top: 1px solid #eaeaea; margin: 20px 0;" />
-            <h3>Leur problématique / besoin :</h3>
-            <p style="white-space: pre-wrap; background: #f9f9f9; padding: 15px; border-radius: 8px;">${validData.message}</p>
+            ${validData.message !== "Non renseigné" ? `<p><strong>Besoin :</strong> ${validData.message}</p>` : ""}
           </div>
         `,
             });
 
             if (resendError) {
-                console.error("Erreur Resend détaillée :", resendError);
-                return { success: false, error: "Erreur envoi email: " + resendError.message };
+                return { success: false, error: resendError.message };
             }
         } else {
-            // Mode simulation si pas de clé API (pour développement local)
-            console.log("⚠️ Aucune clé RESEND_API_KEY trouvée. Simulation d'envoi :");
-            console.log(validData);
-
-            // Simuler une latence réseau
-            await new Promise((resolve) => setTimeout(resolve, 1500));
+            console.log("⚠️ Simulation d'envoi (pas de clé API):", validData);
+            await new Promise((resolve) => setTimeout(resolve, 1000));
         }
 
         return { success: true };
-
     } catch (error) {
-        console.error("Erreur lors de l'envoi de l'audit:", error);
-
-        return { success: false, error: "Une erreur interne est survenue. Veuillez réessayer." };
+        return { success: false, error: "Erreur interne" };
     }
 }
