@@ -90,10 +90,10 @@ export function AuditModal() {
 
                             <div className="relative z-10">
                                 <h3 className="text-2xl font-bold text-white mb-2 leading-tight">
-                                    Construisons votre avantage.
+                                    Identifions vos potentiels d'automatisation.
                                 </h3>
                                 <p className="text-gray-400 text-sm leading-relaxed mb-6">
-                                    Une feuille de route claire pour automatiser vos processus de bout en bout.
+                                    Un échange de 30 min pour analyser vos processus les plus chronophages et chiffrer précisément le temps que l'IA peut vous faire économiser.
                                 </p>
                             </div>
 
@@ -103,24 +103,24 @@ export function AuditModal() {
                                     <div className="relative">
                                         <div className="absolute -left-[5px] top-1.5 w-2 h-2 rounded-full bg-nira-blue shadow-[0_0_8px_rgba(15,141,230,0.8)]" />
                                         <div className="pl-5">
-                                            <h4 className="text-sm font-semibold text-white">1. Audit Gratuit</h4>
-                                            <p className="text-xs text-gray-500 mt-1 line-clamp-1">Analyse de vos processus.</p>
+                                            <h4 className="text-sm font-semibold text-white">1. Diagnostic Offert</h4>
+                                            <p className="text-xs text-gray-500 mt-1">Analyse de vos flux de travail actuels.</p>
                                         </div>
                                     </div>
 
                                     <div className="relative">
                                         <div className="absolute -left-[5px] top-1.5 w-2 h-2 rounded-full bg-white/20" />
                                         <div className="pl-5">
-                                            <h4 className="text-sm font-medium text-gray-300">2. Plan Technique</h4>
-                                            <p className="text-xs text-gray-500 mt-1 line-clamp-1">Architecture sur-mesure.</p>
+                                            <h4 className="text-sm font-medium text-gray-300">2. Stratégie & ROI</h4>
+                                            <p className="text-xs text-gray-500 mt-1">Projection des gains et chiffrage précis.</p>
                                         </div>
                                     </div>
 
                                     <div className="relative">
                                         <div className="absolute -left-[5px] top-1.5 w-2 h-2 rounded-full bg-white/20" />
                                         <div className="pl-5">
-                                            <h4 className="text-sm font-medium text-gray-300">3. Déploiement</h4>
-                                            <p className="text-xs text-gray-500 mt-1 line-clamp-1">Mise en production agile.</p>
+                                            <h4 className="text-sm font-medium text-gray-300">3. Mise en Service</h4>
+                                            <p className="text-xs text-gray-500 mt-1">Déploiement de vos solutions IA.</p>
                                         </div>
                                     </div>
                                 </div>
