@@ -53,8 +53,8 @@ const metrics = [
 const testimonials = [
     {
         quote: "Nira n'a pas seulement déployé un outil, ils ont repensé toute notre façon de gérer l'information. Le ROI a été visible dès le premier mois d'utilisation.",
-        author: "Sarah Martin",
-        role: "Directrice des Opérations, TechFlow",
+        author: "Safir Hanafi",
+        role: "CEO, PillQare",
         avatar: "bg-indigo-100 text-indigo-700"
     },
     {
