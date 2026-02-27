@@ -72,11 +72,11 @@ export function Hero() {
                     {/* Headline */}
                     <div className="mb-8 leading-[1.15] text-center">
                         {/* Ligne 1 : [Mot dynamique] vos processus */}
-                        <div className="text-3xl sm:text-5xl md:text-7xl font-bold tracking-tight text-nira-dark">
+                        <div className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight text-nira-dark">
                             Automatisez vos processus
                         </div>
                         {/* Ligne 2 : grace à l'ia. */}
-                        <div className="text-3xl sm:text-5xl md:text-7xl font-bold tracking-tight text-nira-dark mt-1 sm:mt-2">
+                        <div className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight text-nira-dark mt-1 sm:mt-2">
                             <motion.span variants={itemVariants} className="inline-block">
                                 <HeroAnimatedText />
                             </motion.span>
