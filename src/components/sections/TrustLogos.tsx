@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useSpring, useTransform, useMotionValue } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
 const logos = [
@@ -12,47 +12,63 @@ const logos = [
     { name: "Client 6", src: "/images/logos/6.png" },
 ];
 
-function MarqueeRow({ direction = "left", speed = 35 }: { direction?: "left" | "right"; speed?: number }) {
+function MarqueeRow({ direction = "left", speed = 40 }: { direction?: "left" | "right"; speed?: number }) {
     const containerRef = useRef<HTMLDivElement>(null);
     const [contentWidth, setContentWidth] = useState(0);
 
-    useEffect(() => {
+    // Fonction de mesure ultra-robuste
+    const measureWidth = () => {
         if (!containerRef.current) return;
-
-        // Mesurer la largeur précise d'un seul jeu de logos (le conteneur 'data-set')
-        const measureWidth = () => {
-            const firstSet = containerRef.current?.querySelector("[data-set='first']") as HTMLElement;
-            if (firstSet) {
-                // Utilisation de getBoundingClientRect pour être ultra-précis au sous-pixel près
-                setContentWidth(firstSet.getBoundingClientRect().width);
+        const firstSet = containerRef.current.querySelector("[data-set='first']") as HTMLElement;
+        if (firstSet) {
+            const width = firstSet.getBoundingClientRect().width;
+            if (width > 0) {
+                setContentWidth(width);
             }
-        };
+        }
+    };
 
+    useEffect(() => {
         measureWidth();
 
-        // Attendre que les images soient chargées pour remesurer (évite les problèmes de font/image loading)
-        setTimeout(measureWidth, 500);
+        // Multiples tentatives de mesure car les images peuvent charger de façon asynchrone
+        const timer1 = setTimeout(measureWidth, 100);
+        const timer2 = setTimeout(measureWidth, 500);
+        const timer3 = setTimeout(measureWidth, 1000);
+        const timer4 = setTimeout(measureWidth, 3000);
 
         window.addEventListener("resize", measureWidth);
-        return () => window.removeEventListener("resize", measureWidth);
+
+        // Observer les changements de taille (au cas où les images chargent tardivement)
+        const observer = new ResizeObserver(measureWidth);
+        if (containerRef.current) observer.observe(containerRef.current);
+
+        return () => {
+            clearTimeout(timer1);
+            clearTimeout(timer2);
+            clearTimeout(timer3);
+            clearTimeout(timer4);
+            window.removeEventListener("resize", measureWidth);
+            observer.disconnect();
+        };
     }, []);
 
-    const duration = contentWidth > 0 ? contentWidth / speed : 40;
+    const duration = contentWidth > 0 ? contentWidth / speed : 50;
 
     return (
-        <div className="relative overflow-hidden w-full">
-            {/* Masques latéraux */}
-            <div className="absolute left-0 top-0 bottom-0 w-20 md:w-40 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
-            <div className="absolute right-0 top-0 bottom-0 w-20 md:w-40 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+        <div className="relative overflow-hidden w-full py-4">
+            {/* Masques latéraux plus profonds pour une meilleure immersion */}
+            <div className="absolute left-0 top-0 bottom-0 w-24 md:w-64 bg-gradient-to-r from-white via-white/80 to-transparent z-10 pointer-events-none" />
+            <div className="absolute right-0 top-0 bottom-0 w-24 md:w-64 bg-gradient-to-l from-white via-white/80 to-transparent z-10 pointer-events-none" />
 
-            <div ref={containerRef} className="flex w-max">
+            <div ref={containerRef} className="flex w-max items-center">
                 {/* 
-                  Utilisation de 'gap' au lieu de 'px' margin pour un calcul de largeur parfait. 
-                  pr-X ajoute l'espacement entre la fin de la set 1 et le début de la set 2.
+                  IMPORTANT: 'gap' + 'pr' doivent être identiques pour que la jonction 
+                  soit invisible mathématiquement.
                 */}
                 <motion.div
                     data-set="first"
-                    className="flex shrink-0 items-center justify-center gap-12 md:gap-24 lg:gap-32 pr-12 md:pr-24 lg:pr-32"
+                    className="flex shrink-0 items-center gap-16 md:gap-32 lg:gap-48 pr-16 md:pr-32 lg:pr-48"
                     animate={contentWidth > 0 ? {
                         x: direction === "left" ? [0, -contentWidth] : [-contentWidth, 0],
                     } : undefined}
@@ -71,8 +87,8 @@ function MarqueeRow({ direction = "left", speed = 35 }: { direction?: "left" | "
                             <img
                                 src={logo.src}
                                 alt={logo.name}
-                                loading="eager"
-                                className="h-20 sm:h-24 md:h-32 lg:h-40 w-auto max-w-[280px] md:max-w-[380px] object-contain select-none grayscale opacity-30 hover:grayscale-0 hover:opacity-100 transition-all duration-500"
+                                onLoad={measureWidth}
+                                className="h-24 sm:h-32 md:h-44 lg:h-56 w-auto max-w-[300px] md:max-w-[450px] object-contain select-none grayscale opacity-30 hover:grayscale-0 hover:opacity-100 transition-all duration-700"
                                 draggable={false}
                             />
                         </div>
@@ -81,7 +97,7 @@ function MarqueeRow({ direction = "left", speed = 35 }: { direction?: "left" | "
 
                 {/* Jeu 2 — copie identique */}
                 <motion.div
-                    className="flex shrink-0 items-center justify-center gap-12 md:gap-24 lg:gap-32 pr-12 md:pr-24 lg:pr-32"
+                    className="flex shrink-0 items-center gap-16 md:gap-32 lg:gap-48 pr-16 md:pr-32 lg:pr-48"
                     animate={contentWidth > 0 ? {
                         x: direction === "left" ? [0, -contentWidth] : [-contentWidth, 0],
                     } : undefined}
@@ -100,8 +116,7 @@ function MarqueeRow({ direction = "left", speed = 35 }: { direction?: "left" | "
                             <img
                                 src={logo.src}
                                 alt={logo.name}
-                                loading="eager"
-                                className="h-20 sm:h-24 md:h-32 lg:h-40 w-auto max-w-[280px] md:max-w-[380px] object-contain select-none grayscale opacity-30 hover:grayscale-0 hover:opacity-100 transition-all duration-500"
+                                className="h-24 sm:h-32 md:h-44 lg:h-56 w-auto max-w-[300px] md:max-w-[450px] object-contain select-none grayscale opacity-30 hover:grayscale-0 hover:opacity-100 transition-all duration-700"
                                 draggable={false}
                             />
                         </div>
@@ -114,7 +129,7 @@ function MarqueeRow({ direction = "left", speed = 35 }: { direction?: "left" | "
 
 export function TrustLogos() {
     return (
-        <section className="py-24 md:py-32 relative">
+        <section className="py-24 md:py-40 relative">
 
             {/* Titre */}
             <motion.div
@@ -122,17 +137,18 @@ export function TrustLogos() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.5 }}
-                className="text-center mb-16 md:mb-24"
+                className="text-center mb-20 md:mb-32"
             >
-                <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-nira-dark tracking-tight">
+                <h2 className="text-4xl md:text-6xl lg:text-8xl font-black text-nira-dark tracking-tighter">
                     Ils nous font confiance.
                 </h2>
+                <div className="w-24 h-1.5 bg-nira-blue mx-auto mt-8 rounded-full opacity-40 shadow-[0_0_20px_rgba(15,141,230,0.5)]"></div>
             </motion.div>
 
             {/* 2 rangées qui défilent */}
-            <div className="space-y-12 md:space-y-20">
-                <MarqueeRow direction="left" speed={35} />
-                <MarqueeRow direction="right" speed={30} />
+            <div className="space-y-16 md:space-y-28">
+                <MarqueeRow direction="left" speed={45} />
+                <MarqueeRow direction="right" speed={40} />
             </div>
         </section>
     );

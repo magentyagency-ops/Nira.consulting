@@ -45,8 +45,8 @@ export function WhyNira() {
                             Les outils no-code sont accessibles, mais créer des systèmes robustes, scalables et sécurisés requiert une expertise d'ingénierie.
                         </p>
 
-                        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 group">
-                            <div className="relative w-24 h-24 md:w-32 md:h-32 rounded-2xl border-2 border-white/10 bg-white/5 overflow-hidden transition-all duration-500 group-hover:border-nira-blue/50 group-hover:scale-[1.02] shadow-2xl">
+                        <div className="flex flex-col sm:flex-row items-center sm:items-center gap-8 md:gap-12 group">
+                            <div className="relative w-32 h-32 md:w-48 md:h-48 rounded-3xl border-2 border-white/10 bg-white/5 overflow-hidden transition-all duration-700 group-hover:border-nira-blue/50 group-hover:scale-[1.02] shadow-[0_0_50px_rgba(0,0,0,0.5)]">
                                 <Image
                                     src="/images/experts/alexandre.jpg"
                                     alt="Alexandre Lin"
@@ -57,10 +57,10 @@ export function WhyNira() {
                                 {/* Placeholder gradient back-up */}
                                 <div className="absolute inset-0 bg-gradient-to-br from-nira-blue/20 to-purple-500/20 -z-10" />
                             </div>
-                            <div className="flex flex-col gap-1">
-                                <span className="text-white font-bold text-xl md:text-2xl leading-tight tracking-tight">Alexandre Lin</span>
-                                <span className="text-nira-blue text-sm md:text-base font-semibold uppercase tracking-wider">Head of Tech & Innovation</span>
-                                <div className="w-12 h-0.5 bg-nira-blue mt-2 opacity-50"></div>
+                            <div className="flex flex-col gap-2 items-center sm:items-start text-center sm:text-left">
+                                <span className="text-white font-bold text-2xl md:text-4xl leading-tight tracking-tight">Alexandre Lin</span>
+                                <span className="text-nira-blue text-sm md:text-lg font-bold uppercase tracking-[0.2em]">Head of Tech & Innovation</span>
+                                <div className="w-16 h-1 bg-nira-blue mt-3 opacity-60 rounded-full"></div>
                             </div>
                         </div>
                     </motion.div>
