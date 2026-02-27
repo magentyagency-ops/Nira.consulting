@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export function WhyNira() {
     return (
-        <section className="py-16 md:py-24 relative text-white overflow-hidden" style={{ backgroundColor: 'rgba(9, 9, 11, 0.92)', backdropFilter: 'grayscale(1)', WebkitBackdropFilter: 'grayscale(1)' }}>
+        <section className="py-16 md:py-24 relative text-white overflow-hidden" style={{ backgroundColor: 'rgba(9, 9, 11, 0.92)', backdropFilter: 'grayscale(1) brightness(2.5)', WebkitBackdropFilter: 'grayscale(1) brightness(2.5)' }}>
             {/* Background Glows subtils */}
             <div className="absolute top-0 right-0 w-1/2 h-full bg-nira-blue/10 blur-[120px] rounded-full pointer-events-none" />
             <div className="absolute bottom-0 left-0 w-1/3 h-1/2 bg-white/5 blur-[100px] rounded-full pointer-events-none" />
