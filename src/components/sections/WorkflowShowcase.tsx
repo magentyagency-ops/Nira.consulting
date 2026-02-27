@@ -65,31 +65,10 @@ export function WorkflowShowcase() {
                             </div>
 
                             {/* Le Flux Visuel */}
-                            <div className="relative flex flex-col md:flex-row items-center justify-between gap-4 md:gap-0">
+                            <div className="relative flex flex-col md:flex-row items-center md:items-start justify-between w-full mt-4">
 
-                                {/* Ligne de connexion globale (visible derrière les nodes, desktop only) */}
-                                <div className="absolute top-1/2 left-[10%] right-[10%] h-[2px] bg-gray-100 hidden md:block -translate-y-1/2 z-0"></div>
-
-                                {flow.nodes.map((node, nodeIndex) => (
-                                    <div key={nodeIndex} className="relative z-10 flex flex-col items-center group w-full md:w-auto">
-
-                                        {/* Particule animée desktop */}
-                                        {nodeIndex < flow.nodes.length - 1 && (
-                                            <div className="hidden md:block absolute top-8 left-1/2 w-full h-[2px] overflow-hidden -z-10 translate-x-[2rem] lg:translate-x-[3rem]">
-                                                <motion.div
-                                                    initial={{ x: "-100%" }}
-                                                    animate={{ x: "100%" }}
-                                                    transition={{
-                                                        duration: 2.5,
-                                                        repeat: Infinity,
-                                                        ease: "linear",
-                                                        delay: flowIndex * 0.5 + nodeIndex
-                                                    }}
-                                                    className={`h-full w-1/3 rounded-full opacity-60 ${flow.particleColor}`}
-                                                    style={{ background: `linear-gradient(90deg, transparent, currentColor, transparent)` }}
-                                                />
-                                            </div>
-                                        )}
+                                {flow.nodes.map((node, nodeIndex) => [
+                                    <div key={`node-${nodeIndex}`} className="relative z-10 flex flex-col items-center group w-full md:w-auto shrink-0">
 
                                         <motion.div
                                             whileHover={{ scale: 1.05 }}
@@ -97,19 +76,40 @@ export function WorkflowShowcase() {
                                         >
                                             {node.icon}
                                         </motion.div>
-                                        <span className="text-xs md:text-sm font-medium text-nira-dark text-center px-2 md:px-0">
+                                        <span className="text-xs md:text-sm font-medium text-nira-dark text-center px-2 md:px-0 max-w-[140px]">
                                             {node.label}
                                         </span>
 
                                         {/* Flèche de connexion verticale mobile */}
                                         {nodeIndex < flow.nodes.length - 1 && (
-                                            <div className="md:hidden flex flex-col items-center my-2">
-                                                <div className="w-px h-4 bg-nira-gray/20"></div>
-                                                <div className="w-2 h-2 border-b border-r border-nira-gray/30 rotate-45 -mt-1"></div>
+                                            <div className="md:hidden flex flex-col items-center my-3">
+                                                <div className="w-px h-6 bg-nira-gray/10"></div>
+                                                <div className="w-2 h-2 border-b border-r border-nira-gray/20 rotate-45 -mt-1"></div>
                                             </div>
                                         )}
-                                    </div>
-                                ))}
+                                    </div>,
+
+                                    /* Ligne horizontale desktop et particule (seulement entre les noeuds) */
+                                    nodeIndex < flow.nodes.length - 1 && (
+                                        <div key={`line-${nodeIndex}`} className="hidden md:block flex-1 mt-8 h-[2px] mx-4 relative overflow-hidden">
+                                            {/* Ligne de fond grise */}
+                                            <div className="absolute inset-0 bg-gray-200/50"></div>
+                                            {/* Particule animée */}
+                                            <motion.div
+                                                initial={{ x: "-100%" }}
+                                                animate={{ x: "300%" }}
+                                                transition={{
+                                                    duration: 2.2,
+                                                    repeat: Infinity,
+                                                    ease: "linear",
+                                                    delay: flowIndex * 0.4 + nodeIndex * 1.1
+                                                }}
+                                                className={`absolute inset-y-0 w-1/3 rounded-full opacity-60 ${flow.particleColor}`}
+                                                style={{ background: `linear-gradient(90deg, transparent, currentColor, transparent)` }}
+                                            />
+                                        </div>
+                                    )
+                                ])}
 
                             </div>
                         </motion.div>
