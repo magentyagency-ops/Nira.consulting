@@ -130,18 +130,16 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .will-change-transform {
-    animation: none !important;
-  }
 
-  .animate-scroll-left,
-  .animate-scroll-right {
+  .will-change-transform,
+  .marquee-left,
+  .marquee-right {
     animation: none !important;
   }
 }
 
-/* Trust Logos — Infinite horizontal scroll */
-@keyframes scroll-left {
+/* Trust Logos — GPU-accelerated infinite marquee */
+@keyframes marquee-scroll-left {
   0% {
     transform: translateX(0);
   }
@@ -151,7 +149,7 @@ body {
   }
 }
 
-@keyframes scroll-right {
+@keyframes marquee-scroll-right {
   0% {
     transform: translateX(-50%);
   }
@@ -161,12 +159,22 @@ body {
   }
 }
 
-.animate-scroll-left {
-  animation: scroll-left 35s linear infinite;
+.marquee-left {
+  display: flex;
   width: max-content;
+  animation: marquee-scroll-left 30s linear infinite;
+  will-change: transform;
 }
 
-.animate-scroll-right {
-  animation: scroll-right 40s linear infinite;
+.marquee-right {
+  display: flex;
   width: max-content;
+  animation: marquee-scroll-right 35s linear infinite;
+  will-change: transform;
+}
+
+/* Pause on hover for accessibility */
+.marquee-left:hover,
+.marquee-right:hover {
+  animation-play-state: paused;
 }
