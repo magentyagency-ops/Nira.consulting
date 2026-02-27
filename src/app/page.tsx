@@ -20,8 +20,8 @@ export default function Home() {
       <Hero />
       <Impact />
       <Approche />
-      <UseCases />
       <TrustLogos />
+      <UseCases />
       <WorkflowShowcase />
       <WhyNira />
       <SocialProof />
