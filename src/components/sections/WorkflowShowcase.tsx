@@ -75,17 +75,17 @@ export function WorkflowShowcase() {
 
                                         {/* Particule animée desktop */}
                                         {nodeIndex < flow.nodes.length - 1 && (
-                                            <div className="hidden md:block absolute top-[28px] left-[60px] w-[calc(100vw/3-120px)] max-w-[250px] h-[2px] overflow-hidden -z-10">
+                                            <div className="hidden md:block absolute top-8 left-1/2 w-full h-[2px] overflow-hidden -z-10 translate-x-[2rem] lg:translate-x-[3rem]">
                                                 <motion.div
                                                     initial={{ x: "-100%" }}
-                                                    animate={{ x: "200%" }}
+                                                    animate={{ x: "100%" }}
                                                     transition={{
-                                                        duration: 2,
+                                                        duration: 2.5,
                                                         repeat: Infinity,
                                                         ease: "linear",
                                                         delay: flowIndex * 0.5 + nodeIndex
                                                     }}
-                                                    className={`h-full w-1/2 rounded-full opacity-50 ${flow.particleColor}`}
+                                                    className={`h-full w-1/3 rounded-full opacity-60 ${flow.particleColor}`}
                                                     style={{ background: `linear-gradient(90deg, transparent, currentColor, transparent)` }}
                                                 />
                                             </div>
