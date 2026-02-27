@@ -265,13 +265,16 @@ export function SimulationModal() {
                 <FolderOpen className="w-4 h-4 text-nira-blue" />
             </div>
 
-            <button
+            <motion.button
+                whileHover={{ scale: 1.02, y: -2 }}
+                whileTap={{ scale: 0.98 }}
                 onClick={startCountdown}
-                className="px-10 py-3.5 bg-nira-blue text-white font-semibold rounded-xl hover:bg-nira-blue/90 transition-all shadow-lg shadow-nira-blue/20 flex items-center gap-2"
+                className="px-10 py-4 bg-gradient-to-r from-nira-blue-600 to-nira-blue-500 text-white font-bold rounded-2xl hover:shadow-[0_20px_40px_-15px_rgba(15,141,230,0.4)] transition-all flex items-center gap-3 relative overflow-hidden group"
             >
-                <Sparkles className="w-4 h-4" />
-                Lancer la course
-            </button>
+                <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 skew-x-[-20deg]" />
+                <Sparkles className="w-5 h-5 text-blue-100" />
+                <span className="relative z-10">Lancer la course</span>
+            </motion.button>
         </motion.div>
     );
 
@@ -476,13 +479,16 @@ export function SimulationModal() {
                 transition={{ delay: 0.8 }}
                 className="flex flex-col sm:flex-row gap-3"
             >
-                <button
+                <motion.button
+                    whileHover={{ scale: 1.02, y: -2 }}
+                    whileTap={{ scale: 0.98 }}
                     onClick={() => { handleClose(); setTimeout(openAuditModal, 350); }}
-                    className="px-8 py-3 bg-nira-blue text-white font-semibold rounded-xl hover:bg-nira-blue/90 transition-all shadow-lg shadow-nira-blue/20 flex items-center gap-2"
+                    className="px-8 py-3.5 bg-gradient-to-r from-nira-blue-600 to-nira-blue-500 text-white font-bold rounded-2xl hover:shadow-[0_20px_40px_-15px_rgba(15,141,230,0.4)] transition-all shadow-lg shadow-nira-blue/10 flex items-center gap-2 relative overflow-hidden group"
                 >
-                    <Sparkles className="w-4 h-4" />
-                    Automatiser mes processus
-                </button>
+                    <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 skew-x-[-20deg]" />
+                    <Sparkles className="w-4 h-4 text-blue-100" />
+                    <span className="relative z-10">Automatiser mes processus</span>
+                </motion.button>
                 <button
                     onClick={resetGame}
                     className="px-6 py-3 bg-gray-100 text-gray-600 font-medium rounded-xl hover:bg-gray-200 transition-all flex items-center gap-2"
