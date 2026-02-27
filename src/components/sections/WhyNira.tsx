@@ -2,34 +2,10 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { Code2, Cpu, Rocket, Terminal } from "lucide-react";
-
-const expertiseAreas = [
-    {
-        icon: <Cpu className="w-5 h-5" />,
-        title: "Architecture IA",
-        description: "Intégration de LLMs et agents autonomes de bout en bout."
-    },
-    {
-        icon: <Code2 className="w-5 h-5" />,
-        title: "Ingénierie Logicielle",
-        description: "Développement full-stack robuste et scalable (React, Node, Python)."
-    },
-    {
-        icon: <Terminal className="w-5 h-5" />,
-        title: "Automatisation Complexe",
-        description: "Orchestration de workflows avancés (Make, n8n, API sur mesure)."
-    },
-    {
-        icon: <Rocket className="w-5 h-5" />,
-        title: "Performance & Scalabilité",
-        description: "Optimisation de l'infrastructure pour de forts volumes de données."
-    }
-];
 
 export function WhyNira() {
     return (
-        <section className="py-20 md:py-32 relative bg-nira-dark text-white overflow-hidden">
+        <section className="py-16 md:py-24 relative bg-nira-dark text-white overflow-hidden">
             {/* Background Glows subtils */}
             <div className="absolute top-0 right-0 w-1/2 h-full bg-nira-blue/10 blur-[120px] rounded-full pointer-events-none" />
             <div className="absolute bottom-0 left-0 w-1/3 h-1/2 bg-white/5 blur-[100px] rounded-full pointer-events-none" />
@@ -95,35 +71,13 @@ export function WhyNira() {
                             </span>
                         </h2>
 
-                        <div className="space-y-6 text-gray-300 text-lg leading-relaxed mb-10">
+                        <div className="space-y-6 text-gray-300 text-lg leading-relaxed">
                             <p className="font-medium text-white text-xl">
                                 "Les outils no-code sont fantastiques pour prototyper, mais construire un système métier robuste, scalable et dopé à l'IA requiert une approche d'ingénieur réseau."
                             </p>
                             <p className="text-gray-400 text-base">
                                 Derrière Nira, notre infrastructure technique est architecturée pour la sécurité, la performance et l'hyper-personnalisation. Pas d'usines à gaz préconçues, mais des ponts intelligents entre vos logiciels existants et les dernières avancées en intelligence artificielle.
                             </p>
-                        </div>
-
-                        {/* Expertise Grid */}
-                        <div className="grid sm:grid-cols-2 gap-4 md:gap-6 mt-8">
-                            {expertiseAreas.map((area, index) => (
-                                <motion.div
-                                    key={index}
-                                    initial={{ opacity: 0, y: 20 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true, margin: "-50px" }}
-                                    transition={{ duration: 0.5, delay: 0.3 + (index * 0.1) }}
-                                    className="bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-colors group"
-                                >
-                                    <div className="w-10 h-10 rounded-xl bg-nira-blue/10 flex items-center justify-center text-nira-blue mb-4 group-hover:scale-110 transition-transform duration-300">
-                                        {area.icon}
-                                    </div>
-                                    <h4 className="text-lg font-semibold text-white mb-2">{area.title}</h4>
-                                    <p className="text-sm text-gray-400 group-hover:text-gray-300 transition-colors">
-                                        {area.description}
-                                    </p>
-                                </motion.div>
-                            ))}
                         </div>
                     </motion.div>
 
