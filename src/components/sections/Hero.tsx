@@ -7,10 +7,12 @@ import { HeroAnimatedText } from "../animations/HeroAnimatedText";
 import { useRef } from "react";
 
 import { useAuditModal } from "@/store/useAuditModal";
+import { useSimulationModal } from "@/store/useSimulationModal";
 
 export function Hero() {
     const containerRef = useRef<HTMLElement>(null);
     const { openModal } = useAuditModal();
+    const { openModal: openSimulationModal } = useSimulationModal();
 
     // Parallax léger pour le contenu entier lors du scroll
     const { scrollYProgress } = useScroll({
@@ -101,7 +103,12 @@ export function Hero() {
                             </span>
                             {/* Effet au survol interne (glow sweep) implémenté dans le composant Button ou géré ici */}
                         </Button>
-                        <Button variant="outline" size="lg" className="w-full sm:w-auto group bg-white/50 backdrop-blur-sm shadow-[0_0_0_1px_rgba(0,0,0,0.05)_inset] hover:shadow-[0_0_0_1px_rgba(15,141,230,0.3)_inset] transition-all duration-300 text-sm sm:text-base">
+                        <Button
+                            variant="outline"
+                            size="lg"
+                            onClick={openSimulationModal}
+                            className="w-full sm:w-auto group bg-white/50 backdrop-blur-sm shadow-[0_0_0_1px_rgba(0,0,0,0.05)_inset] hover:shadow-[0_0_0_1px_rgba(15,141,230,0.3)_inset] transition-all duration-300 text-sm sm:text-base"
+                        >
                             <Play className="mr-2 w-4 h-4 text-nira-blue-600 transition-transform group-hover:scale-110" />
                             Voir comment ça fonctionne
                         </Button>
