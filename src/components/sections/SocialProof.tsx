@@ -100,6 +100,15 @@ export function SocialProof() {
                             </motion.div>
                         ))}
                     </div>
+
+                    <motion.p
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        transition={{ delay: 1 }}
+                        className="text-center text-xs md:text-sm text-nira-gray/60 mt-8 italic"
+                    >
+                        * en moyenne sur nos clients en 2025
+                    </motion.p>
                 </div>
 
                 {/* Testimonials Section */}
