@@ -44,7 +44,7 @@ const useCases = [
 
 export function UseCases() {
     return (
-        <section className="py-24 md:py-32 relative">
+        <section className="py-16 md:py-32 relative">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
 
                 <motion.div
@@ -52,12 +52,12 @@ export function UseCases() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
                     transition={{ duration: 0.5 }}
-                    className="text-center max-w-3xl mx-auto mb-16 md:mb-24"
+                    className="text-center max-w-3xl mx-auto mb-12 md:mb-24"
                 >
-                    <h2 className="text-3xl md:text-5xl font-bold text-nira-dark tracking-tight mb-6">
+                    <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-nira-dark tracking-tight mb-4 md:mb-6">
                         Des cas d'usage concrets.
                     </h2>
-                    <p className="text-lg md:text-xl text-nira-gray">
+                    <p className="text-base md:text-xl text-nira-gray px-2">
                         Nous automatisons les processus critiques de chaque département pour rendre votre organisation plus agile.
                     </p>
                 </motion.div>
@@ -71,7 +71,7 @@ export function UseCases() {
                             viewport={{ once: true, margin: "-50px" }}
                             transition={{ duration: 0.4, delay: index * 0.1 }}
                             whileHover={{ y: -5 }}
-                            className="group relative bg-white/60 backdrop-blur-lg rounded-2xl p-8 border border-nira-gray/10 hover:border-nira-gray/20 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden"
+                            className="group relative bg-white/60 backdrop-blur-lg rounded-2xl p-6 md:p-8 border border-nira-gray/10 hover:border-nira-gray/20 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden"
                         >
                             {/* Accent Glow de fond au hover */}
                             <div className={`absolute -inset-px rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none border ${useCase.accent}`} />

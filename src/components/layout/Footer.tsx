@@ -3,18 +3,18 @@ import { ArrowUpRight } from "lucide-react";
 
 export function Footer() {
     return (
-        <footer className="border-t border-nira-gray/10 pt-20 pb-10 relative z-10 backdrop-blur-md bg-white/40">
+        <footer className="border-t border-nira-gray/10 pt-12 md:pt-20 pb-8 md:pb-10 relative z-10 backdrop-blur-md bg-white/40">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 mb-12 md:mb-16">
 
                     {/* Colonne 1 : Marque */}
-                    <div className="lg:col-span-1">
-                        <Link href="/" className="text-2xl font-bold tracking-tighter text-nira-dark flex items-center gap-2 mb-4">
+                    <div className="col-span-2 lg:col-span-1">
+                        <Link href="/" className="text-xl md:text-2xl font-bold tracking-tighter text-nira-dark flex items-center gap-2 mb-3 md:mb-4">
                             <span className="w-8 h-8 rounded-lg bg-nira-blue text-white flex items-center justify-center text-xl">N</span>
                             Nira.
                         </Link>
-                        <p className="text-nira-gray text-sm leading-relaxed max-w-xs">
+                        <p className="text-nira-gray text-xs md:text-sm leading-relaxed max-w-xs">
                             L'agence d'automatisation nouvelle génération. Nous transformons vos processus complexes en workflows parfaitement huilés grâce à l'IA.
                         </p>
                     </div>
@@ -63,7 +63,7 @@ export function Footer() {
                 </div>
 
                 {/* Bottom Bar */}
-                <div className="pt-8 border-t border-nira-gray/10 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-nira-gray">
+                <div className="pt-6 md:pt-8 border-t border-nira-gray/10 flex flex-col md:flex-row items-center justify-between gap-3 md:gap-4 text-xs md:text-sm text-nira-gray">
                     <p>© {new Date().getFullYear()} Nira. Tous droits réservés.</p>
                     <p className="flex items-center gap-1">
                         Fait avec <span className="text-red-500">♥</span> à Paris.

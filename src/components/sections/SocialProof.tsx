@@ -67,23 +67,23 @@ const testimonials = [
 
 export function SocialProof() {
     return (
-        <section className="py-24 md:py-32 relative">
+        <section className="py-16 md:py-32 relative">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
 
                 {/* Metrics Section */}
-                <div className="mb-24">
+                <div className="mb-16 md:mb-24">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, margin: "-100px" }}
-                        className="text-center mb-16"
+                        className="text-center mb-10 md:mb-16"
                     >
-                        <h2 className="text-3xl md:text-5xl font-bold text-nira-dark tracking-tight mb-6">
+                        <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-nira-dark tracking-tight mb-4 md:mb-6">
                             L'impact en chiffres.
                         </h2>
                     </motion.div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-8 max-w-5xl mx-auto">
                         {metrics.map((metric, index) => (
                             <motion.div
                                 key={index}
@@ -91,12 +91,12 @@ export function SocialProof() {
                                 whileInView={{ opacity: 1, scale: 1 }}
                                 viewport={{ once: true, margin: "-50px" }}
                                 transition={{ duration: 0.5, delay: metric.delay }}
-                                className="text-center p-8 rounded-3xl bg-gray-50/30 backdrop-blur-md border border-nira-gray/5"
+                                className="text-center p-6 md:p-8 rounded-3xl bg-gray-50/30 backdrop-blur-md border border-nira-gray/5"
                             >
-                                <div className="text-5xl md:text-7xl text-nira-blue mb-4 tracking-tighter">
+                                <div className="text-4xl md:text-7xl text-nira-blue mb-3 md:mb-4 tracking-tighter">
                                     <CountUp to={metric.value} prefix={metric.prefix} suffix={metric.suffix} delay={metric.delay + 0.3} />
                                 </div>
-                                <p className="text-lg font-medium text-nira-dark">{metric.label}</p>
+                                <p className="text-sm md:text-lg font-medium text-nira-dark">{metric.label}</p>
                             </motion.div>
                         ))}
                     </div>
@@ -114,14 +114,14 @@ export function SocialProof() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true, margin: "-50px" }}
                                 transition={{ duration: 0.6, delay: index * 0.2 }}
-                                className="bg-white/60 backdrop-blur-lg p-8 md:p-10 rounded-3xl border border-nira-gray/10 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] transition-shadow"
+                                className="bg-white/60 backdrop-blur-lg p-6 md:p-10 rounded-2xl md:rounded-3xl border border-nira-gray/10 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] transition-shadow"
                             >
                                 <div className="flex gap-1 mb-6">
                                     {[...Array(5)].map((_, i) => (
                                         <Star key={i} className="w-5 h-5 fill-amber-400 text-amber-400" />
                                     ))}
                                 </div>
-                                <p className="text-lg md:text-xl text-nira-dark leading-relaxed mb-8 relative z-10">
+                                <p className="text-base md:text-xl text-nira-dark leading-relaxed mb-6 md:mb-8 relative z-10">
                                     <Quote className="absolute -top-4 -left-4 w-12 h-12 text-nira-gray/5 -z-10" />
                                     "{testimonial.quote}"
                                 </p>

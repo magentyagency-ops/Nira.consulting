@@ -50,7 +50,7 @@ export function Hero() {
     return (
         <section
             ref={containerRef}
-            className="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden min-h-[100vh] flex items-center"
+            className="relative pt-24 pb-16 md:pt-48 md:pb-32 overflow-hidden min-h-[100svh] flex items-center"
         >
 
             <div className="container mx-auto px-6 relative z-10">
@@ -67,11 +67,11 @@ export function Hero() {
                     {/* Headline */}
                     <div className="mb-8 leading-[1.15] text-center">
                         {/* Ligne 1 : [Mot dynamique] vos processus */}
-                        <div className="text-5xl md:text-7xl font-bold tracking-tight text-nira-dark">
+                        <div className="text-3xl sm:text-5xl md:text-7xl font-bold tracking-tight text-nira-dark">
                             Automatisez vos processus
                         </div>
                         {/* Ligne 2 : grace à l'ia. */}
-                        <div className="text-5xl md:text-7xl font-bold tracking-tight text-nira-dark mt-2">
+                        <div className="text-3xl sm:text-5xl md:text-7xl font-bold tracking-tight text-nira-dark mt-1 sm:mt-2">
                             <motion.span variants={itemVariants} className="inline-block">
                                 <HeroAnimatedText />
                             </motion.span>
@@ -98,7 +98,7 @@ export function Hero() {
                             </span>
                             {/* Effet au survol interne (glow sweep) implémenté dans le composant Button ou géré ici */}
                         </Button>
-                        <Button variant="outline" size="lg" className="w-full sm:w-auto group bg-white/50 backdrop-blur-sm shadow-[0_0_0_1px_rgba(0,0,0,0.05)_inset] hover:shadow-[0_0_0_1px_rgba(15,141,230,0.3)_inset] transition-all duration-300">
+                        <Button variant="outline" size="lg" className="w-full sm:w-auto group bg-white/50 backdrop-blur-sm shadow-[0_0_0_1px_rgba(0,0,0,0.05)_inset] hover:shadow-[0_0_0_1px_rgba(15,141,230,0.3)_inset] transition-all duration-300 text-sm sm:text-base">
                             <Play className="mr-2 w-4 h-4 text-nira-blue-600 transition-transform group-hover:scale-110" />
                             Voir comment ça fonctionne
                         </Button>

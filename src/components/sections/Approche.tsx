@@ -41,7 +41,7 @@ export function Approche() {
     });
 
     return (
-        <section className="py-24 md:py-32 relative border-t border-nira-gray/5">
+        <section className="py-16 md:py-32 relative border-t border-nira-gray/5">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
 
                 <motion.div
@@ -49,12 +49,12 @@ export function Approche() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
                     transition={{ duration: 0.5 }}
-                    className="text-center mb-16 md:mb-24"
+                    className="text-center mb-12 md:mb-24"
                 >
-                    <h2 className="text-3xl md:text-5xl font-bold text-nira-dark tracking-tight mb-6">
+                    <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-nira-dark tracking-tight mb-4 md:mb-6">
                         Notre approche en 4 étapes
                     </h2>
-                    <p className="text-lg text-nira-gray max-w-2xl mx-auto">
+                    <p className="text-base md:text-lg text-nira-gray max-w-2xl mx-auto px-2">
                         Une méthodologie claire et éprouvée pour transformer votre entreprise sans friction, de l'audit initial au déploiement final.
                     </p>
                 </motion.div>
@@ -62,18 +62,18 @@ export function Approche() {
                 {/* Timeline Container */}
                 <div ref={containerRef} className="relative max-w-3xl mx-auto">
                     {/* Ligne de fond (grise) */}
-                    <div className="absolute left-8 md:left-1/2 top-4 bottom-4 w-px bg-nira-gray/10 -translate-x-1/2 md:-translate-x-px"></div>
+                    <div className="absolute left-6 md:left-1/2 top-4 bottom-4 w-px bg-nira-gray/10 -translate-x-1/2 md:-translate-x-px"></div>
 
                     {/* Ligne de progression dynamique (bleue) */}
                     <motion.div
-                        className="absolute left-8 md:left-1/2 top-4 bottom-4 w-[2px] bg-gradient-to-b from-nira-blue via-nira-blue to-transparent -translate-x-1/2 md:-translate-x-px origin-top rounded-full"
+                        className="absolute left-6 md:left-1/2 top-4 bottom-4 w-[2px] bg-gradient-to-b from-nira-blue via-nira-blue to-transparent -translate-x-1/2 md:-translate-x-px origin-top rounded-full"
                         style={{ scaleY }}
                     ></motion.div>
 
                     {steps.map((step, index) => {
                         const isEven = index % 2 === 0;
                         return (
-                            <div key={index} className="relative flex flex-col md:flex-row items-start md:items-center justify-between mb-16 last:mb-0">
+                            <div key={index} className="relative flex flex-col md:flex-row items-start md:items-center justify-between mb-12 md:mb-16 last:mb-0">
 
                                 {/* Contenu (Gauche sur Desktop, toujours à droite sur Mobile) */}
                                 <motion.div
@@ -81,13 +81,13 @@ export function Approche() {
                                     whileInView={{ opacity: 1, x: 0 }}
                                     viewport={{ once: true, margin: "-100px" }}
                                     transition={{ duration: 0.5, delay: 0.1 }}
-                                    className={`w-full md:w-[45%] pl-20 md:pl-0 ${isEven ? 'md:text-right md:pr-12' : 'md:order-2 md:pl-12'}`}
+                                    className={`w-full md:w-[45%] pl-16 md:pl-0 ${isEven ? 'md:text-right md:pr-12' : 'md:order-2 md:pl-12'}`}
                                 >
-                                    <h3 className="text-xl md:text-2xl font-semibold text-nira-dark mb-3">
+                                    <h3 className="text-lg md:text-2xl font-semibold text-nira-dark mb-2 md:mb-3">
                                         <span className="text-nira-blue mr-2 text-sm font-bold uppercase tracking-wider">0{index + 1}.</span>
                                         {step.title}
                                     </h3>
-                                    <p className="text-nira-gray leading-relaxed text-balance">
+                                    <p className="text-sm md:text-base text-nira-gray leading-relaxed text-balance">
                                         {step.description}
                                     </p>
                                 </motion.div>
@@ -98,7 +98,7 @@ export function Approche() {
                                     whileInView={{ scale: 1, opacity: 1 }}
                                     viewport={{ once: true, margin: "-100px" }}
                                     transition={{ duration: 0.4, delay: 0.2, type: "spring" }}
-                                    className="absolute left-8 md:left-1/2 -translate-x-1/2 w-12 h-12 rounded-full bg-white/60 backdrop-blur-md border border-nira-gray/10 shadow-sm flex items-center justify-center z-10 md:order-1"
+                                    className="absolute left-6 md:left-1/2 -translate-x-1/2 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/60 backdrop-blur-md border border-nira-gray/10 shadow-sm flex items-center justify-center z-10 md:order-1"
                                 >
                                     <div className="w-8 h-8 rounded-full bg-nira-blue/10 flex items-center justify-center">
                                         {step.icon}

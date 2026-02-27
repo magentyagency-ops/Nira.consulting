@@ -26,7 +26,7 @@ const impacts = [
 
 export function Impact() {
     return (
-        <section className="py-24 md:py-32 relative z-10">
+        <section className="py-16 md:py-32 relative z-10">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
 
                 <motion.div
@@ -34,17 +34,17 @@ export function Impact() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
                     transition={{ duration: 0.5, ease: "easeOut" }}
-                    className="text-center max-w-3xl mx-auto mb-16 md:mb-24"
+                    className="text-center max-w-3xl mx-auto mb-12 md:mb-24"
                 >
-                    <h2 className="text-3xl md:text-5xl font-bold text-nira-dark tracking-tight mb-6">
+                    <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-nira-dark tracking-tight mb-4 md:mb-6">
                         L'impact immédiat sur votre entreprise.
                     </h2>
-                    <p className="text-lg md:text-xl text-nira-gray">
+                    <p className="text-base md:text-xl text-nira-gray px-2">
                         L'automatisation intelligente n'est pas qu'une question de technologie, c'est un levier de croissance massif et instantané.
                     </p>
                 </motion.div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-12">
                     {impacts.map((impact, index) => (
                         <motion.div
                             key={index}
@@ -53,7 +53,7 @@ export function Impact() {
                             viewport={{ once: true, margin: "-50px" }}
                             transition={{ duration: 0.6, delay: impact.delay, ease: "easeOut" }}
                             whileHover={{ y: -8 }}
-                            className="bg-white/60 backdrop-blur-lg rounded-2xl p-8 border border-nira-gray/10 shadow-sm hover:shadow-xl hover:border-nira-blue/20 transition-all duration-300 group"
+                            className="bg-white/60 backdrop-blur-lg rounded-2xl p-6 md:p-8 border border-nira-gray/10 shadow-sm hover:shadow-xl hover:border-nira-blue/20 transition-all duration-300 group"
                         >
                             <div className="w-14 h-14 rounded-full bg-nira-blue/10 flex items-center justify-center mb-6 group-hover:bg-nira-blue/15 transition-colors duration-300">
                                 {impact.icon}

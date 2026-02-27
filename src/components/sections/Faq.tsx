@@ -34,7 +34,7 @@ function FaqItem({ question, answer, isOpen, onClick }: { question: string, answ
                 onClick={onClick}
                 className="w-full flex items-center justify-between py-6 text-left group transition-colors hover:text-nira-blue"
             >
-                <span className={`text-lg md:text-xl font-medium transition-colors ${isOpen ? 'text-nira-blue' : 'text-nira-dark'}`}>
+                <span className={`text-base md:text-xl font-medium transition-colors ${isOpen ? 'text-nira-blue' : 'text-nira-dark'}`}>
                     {question}
                 </span>
                 <span className="ml-4 shrink-0 w-8 h-8 rounded-full bg-nira-gray/5 flex items-center justify-center group-hover:bg-nira-blue/10 transition-colors">
@@ -64,24 +64,24 @@ export function Faq() {
     const [openIndex, setOpenIndex] = useState<number | null>(0); // Le premier est ouvert par défaut
 
     return (
-        <section className="py-24 md:py-32 relative">
+        <section className="py-16 md:py-32 relative">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
 
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
-                    className="text-center mb-16 md:mb-24"
+                    className="text-center mb-10 md:mb-24"
                 >
-                    <h2 className="text-3xl md:text-5xl font-bold text-nira-dark tracking-tight mb-6">
+                    <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-nira-dark tracking-tight mb-4 md:mb-6">
                         Questions fréquentes.
                     </h2>
-                    <p className="text-lg text-nira-gray">
+                    <p className="text-base md:text-lg text-nira-gray px-2">
                         Tout ce que vous devez savoir avant de franchir le pas de l'automatisation.
                     </p>
                 </motion.div>
 
-                <div className="bg-white/60 backdrop-blur-lg rounded-3xl p-6 md:p-12 border border-nira-gray/5 shadow-sm">
+                <div className="bg-white/60 backdrop-blur-lg rounded-2xl md:rounded-3xl p-4 md:p-12 border border-nira-gray/5 shadow-sm">
                     {faqs.map((faq, index) => (
                         <FaqItem
                             key={index}

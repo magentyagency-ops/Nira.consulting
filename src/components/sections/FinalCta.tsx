@@ -6,12 +6,12 @@ import { Button } from "../ui/button";
 
 export function FinalCta() {
     return (
-        <section className="py-24 md:py-32 relative overflow-hidden">
+        <section className="py-16 md:py-32 relative overflow-hidden">
             {/* Dégradé radial subtil en arrière plan pour faire pop le formulaire */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl h-[600px] bg-nira-blue/5 blur-[120px] rounded-full pointer-events-none" />
 
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl relative z-10">
-                <div className="bg-nira-dark rounded-[2.5rem] p-8 md:p-16 shadow-2xl overflow-hidden relative">
+                <div className="bg-nira-dark rounded-2xl md:rounded-[2.5rem] p-6 md:p-16 shadow-2xl overflow-hidden relative">
 
                     {/* Motif décoratif top right */}
                     <div className="absolute top-0 right-0 p-12 opacity-10 pointer-events-none">
@@ -20,7 +20,7 @@ export function FinalCta() {
                         </svg>
                     </div>
 
-                    <div className="flex flex-col lg:flex-row gap-12 lg:gap-20">
+                    <div className="flex flex-col lg:flex-row gap-8 lg:gap-20">
 
                         {/* Colonne Texte */}
                         <motion.div
@@ -30,11 +30,11 @@ export function FinalCta() {
                             transition={{ duration: 0.6 }}
                             className="w-full lg:w-5/12 text-white"
                         >
-                            <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-6">
+                            <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold tracking-tight mb-4 md:mb-6">
                                 Prêt à passer <br />
                                 <span className="text-nira-blue">à la vitesse supérieure ?</span>
                             </h2>
-                            <p className="text-gray-400 text-lg mb-10 leading-relaxed">
+                            <p className="text-gray-400 text-base md:text-lg mb-8 md:mb-10 leading-relaxed">
                                 Les entreprises qui intègrent l'IA aujourd'hui prennent une avance décisive. Demandez votre audit gratuit de 30 minutes pour identifier vos gisements de productivité.
                             </p>
 
@@ -62,7 +62,7 @@ export function FinalCta() {
                             transition={{ duration: 0.6, delay: 0.2 }}
                             className="w-full lg:w-7/12"
                         >
-                            <form className="bg-white/90 backdrop-blur-md rounded-3xl p-6 md:p-10 shadow-xl space-y-6">
+                            <form className="bg-white/90 backdrop-blur-md rounded-2xl md:rounded-3xl p-5 md:p-10 shadow-xl space-y-5 md:space-y-6">
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <div className="space-y-2">
                                         <label htmlFor="name" className="text-sm font-medium text-nira-dark">Prénom & Nom</label>

@@ -20,13 +20,13 @@ const pillars = [
 
 export function WhyNira() {
     return (
-        <section className="py-24 md:py-32 relative bg-nira-dark text-white overflow-hidden">
+        <section className="py-16 md:py-32 relative bg-nira-dark text-white overflow-hidden">
             {/* Background Glows subtils */}
             <div className="absolute top-0 right-0 w-1/2 h-full bg-nira-blue/5 blur-[120px] rounded-full pointer-events-none" />
             <div className="absolute bottom-0 left-0 w-1/3 h-1/2 bg-white/5 blur-[100px] rounded-full pointer-events-none" />
 
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl relative z-10">
-                <div className="flex flex-col lg:flex-row gap-16 lg:gap-24 items-center">
+                <div className="flex flex-col lg:flex-row gap-10 lg:gap-24 items-center">
 
                     {/* Colonne Titre (Gauche) */}
                     <motion.div
@@ -36,11 +36,11 @@ export function WhyNira() {
                         transition={{ duration: 0.6 }}
                         className="w-full lg:w-1/2"
                     >
-                        <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-6">
+                        <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold tracking-tight mb-4 md:mb-6">
                             L'automatisation<br />
                             <span className="text-nira-blue">par des experts.</span>
                         </h2>
-                        <p className="text-lg md:text-xl text-gray-400 mb-8 max-w-lg">
+                        <p className="text-base md:text-xl text-gray-400 mb-6 md:mb-8 max-w-lg">
                             Les outils no-code sont accessibles, mais créer des systèmes robustes, scalables et sécurisés requiert une expertise d'ingénierie.
                         </p>
 
@@ -58,7 +58,7 @@ export function WhyNira() {
                     </motion.div>
 
                     {/* Colonne Piliers (Droite) */}
-                    <div className="w-full lg:w-1/2 space-y-8">
+                    <div className="w-full lg:w-1/2 space-y-4 md:space-y-8">
                         {pillars.map((pillar, index) => (
                             <motion.div
                                 key={index}
@@ -66,7 +66,7 @@ export function WhyNira() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true, margin: "-50px" }}
                                 transition={{ duration: 0.5, delay: index * 0.15 }}
-                                className="flex gap-4 md:gap-6 bg-white/5 p-6 md:p-8 rounded-2xl border border-white/10 hover:bg-white/10 transition-colors"
+                                className="flex gap-4 bg-white/5 p-5 md:p-8 rounded-2xl border border-white/10 hover:bg-white/10 transition-colors"
                             >
                                 <div className="shrink-0 mt-1">
                                     <CheckCircle2 className="w-6 h-6 text-nira-blue" />
