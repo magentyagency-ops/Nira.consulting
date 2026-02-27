@@ -58,9 +58,9 @@ const testimonials = [
         avatar: "bg-indigo-100 text-indigo-700"
     },
     {
-        quote: "L'approche sur-mesure de Nira nous a permis de connecter des outils métiers vieillissants à une IA moderne. C'est le jour et la nuit pour nos équipes.",
-        author: "Thomas Dubois",
-        role: "CEO, InnovaCorp",
+        quote: "L'audit de Nira a radicalement changé ma vision de l'Intelligence Artificielle. Ils nous ont montré comment l'IA peut fluidifier la communication avec nos équipes créatives au quotidien.",
+        author: "Farid Boumkais",
+        role: "Directeur associé, 4success Groupe",
         avatar: "bg-emerald-100 text-emerald-700"
     }
 ];
