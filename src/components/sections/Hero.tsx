@@ -6,8 +6,11 @@ import { Button } from "../ui/button";
 import { HeroAnimatedText } from "../animations/HeroAnimatedText";
 import { useRef } from "react";
 
+import { useAuditModal } from "@/store/useAuditModal";
+
 export function Hero() {
     const containerRef = useRef<HTMLElement>(null);
+    const { openModal } = useAuditModal();
 
     // Parallax léger pour le contenu entier lors du scroll
     const { scrollYProgress } = useScroll({
@@ -91,7 +94,7 @@ export function Hero() {
                         variants={itemVariants}
                         className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-20 relative z-20"
                     >
-                        <Button variant="primary" size="lg" className="w-full sm:w-auto group relative overflow-hidden">
+                        <Button variant="primary" size="lg" className="w-full sm:w-auto group relative overflow-hidden" onClick={openModal}>
                             <span className="relative z-10 flex items-center">
                                 Demander un audit
                                 <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />

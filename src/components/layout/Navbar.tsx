@@ -5,6 +5,7 @@ import { motion, useScroll, useTransform, AnimatePresence, Variants } from "fram
 import Link from "next/link";
 import { Button } from "../ui/button";
 import { useState } from "react";
+import { useAuditModal } from "@/store/useAuditModal";
 
 const navLinks = [
     { name: "Approche", href: "#approche" },
@@ -28,6 +29,7 @@ export function Navbar() {
 
     const [hoveredLink, setHoveredLink] = useState<string | null>(null);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const { openModal } = useAuditModal();
 
     const containerVariants: Variants = {
         hidden: { opacity: 0, y: -20 },
@@ -106,7 +108,7 @@ export function Navbar() {
 
                     {/* CTAs */}
                     <motion.div variants={itemVariants} className="flex items-center gap-3">
-                        <Button variant="primary" size="md" className="hidden sm:flex text-sm">
+                        <Button variant="primary" size="md" className="hidden sm:flex text-sm" onClick={openModal}>
                             Demander un audit
                         </Button>
                         {/* Mobile Menu Button */}
@@ -174,7 +176,10 @@ export function Navbar() {
                                     variant="primary"
                                     size="lg"
                                     className="w-full"
-                                    onClick={() => setMobileMenuOpen(false)}
+                                    onClick={() => {
+                                        setMobileMenuOpen(false);
+                                        openModal();
+                                    }}
                                 >
                                     Demander un audit
                                 </Button>
