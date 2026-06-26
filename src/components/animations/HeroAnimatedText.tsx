@@ -17,7 +17,7 @@ export function HeroAnimatedText() {
                 await new Promise(resolve => setTimeout(resolve, 10000));
                 if (!isMounted) break;
 
-                // Shimmer sur tout le texte "grace à l'ia."
+                // Shimmer sur tout le texte "grâce à l'ia."
                 await shimmerControls.start({
                     x: ["-100%", "200%"],
                     transition: { duration: 1.2, ease: "easeInOut" }
@@ -41,7 +41,7 @@ export function HeroAnimatedText() {
                 initial={{ x: "-100%" }}
                 animate={shimmerControls}
             />
-            grace à l&apos;ia.
+            grâce à l&apos;ia.
         </span>
     );
 }
