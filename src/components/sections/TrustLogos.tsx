@@ -3,16 +3,29 @@
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
-const logos = [
-    { name: "Client 1", src: "/images/logos/1.png" },
-    { name: "Client 2", src: "/images/logos/2.png" },
-    { name: "Client 3", src: "/images/logos/3.png" },
-    { name: "Client 4", src: "/images/logos/4.png" },
-    { name: "Client 5", src: "/images/logos/5.png" },
-    { name: "Client 6", src: "/images/logos/6.png" },
+const logosRow1 = [
+    { name: "Publicis Groupe", src: "/images/logos/1.png" },
+    { name: "4Success Group", src: "/images/logos/2.png" },
+    { name: "Pathé", src: "/images/logos/3.png" },
+    { name: "PillQare", src: "/images/logos/4.png" },
+    { name: "Magenty", src: "/images/logos/5.png" },
+    { name: "TAC Industries", src: "/images/logos/tac.png" },
+    { name: "GSS", src: "/images/logos/gss.png" },
+    { name: "Baxter", src: "/images/logos/baxter.png" },
 ];
 
-function MarqueeRow({ direction = "left", speed = 35 }: { direction?: "left" | "right"; speed?: number }) {
+const logosRow2 = [
+    { name: "Baxter", src: "/images/logos/baxter.png" },
+    { name: "PillQare", src: "/images/logos/4.png" },
+    { name: "Magenty", src: "/images/logos/5.png" },
+    { name: "Publicis Groupe", src: "/images/logos/1.png" },
+    { name: "GSS", src: "/images/logos/gss.png" },
+    { name: "Pathé", src: "/images/logos/3.png" },
+    { name: "TAC Industries", src: "/images/logos/tac.png" },
+    { name: "4Success Group", src: "/images/logos/2.png" },
+];
+
+function MarqueeRow({ items, direction = "left", speed = 35 }: { items: typeof logosRow1; direction?: "left" | "right"; speed?: number }) {
     const containerRef = useRef<HTMLDivElement>(null);
     const [contentWidth, setContentWidth] = useState(0);
 
@@ -23,14 +36,12 @@ function MarqueeRow({ direction = "left", speed = 35 }: { direction?: "left" | "
         const measureWidth = () => {
             const firstSet = containerRef.current?.querySelector("[data-set='first']") as HTMLElement;
             if (firstSet) {
-                // Utilisation de getBoundingClientRect pour être ultra-précis au sous-pixel près
                 setContentWidth(firstSet.getBoundingClientRect().width);
             }
         };
 
         measureWidth();
 
-        // Attendre que les images soient chargées pour remesurer (évite les problèmes de font/image loading)
         setTimeout(measureWidth, 500);
 
         window.addEventListener("resize", measureWidth);
@@ -46,10 +57,6 @@ function MarqueeRow({ direction = "left", speed = 35 }: { direction?: "left" | "
             <div className="absolute right-0 top-0 bottom-0 w-20 md:w-40 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
 
             <div ref={containerRef} className="flex w-max">
-                {/* 
-                  Utilisation de 'gap' au lieu de 'px' margin pour un calcul de largeur parfait. 
-                  pr-X ajoute l'espacement entre la fin de la set 1 et le début de la set 2.
-                */}
                 <motion.div
                     data-set="first"
                     className="flex shrink-0 items-center justify-center gap-12 md:gap-24 lg:gap-32 pr-12 md:pr-24 lg:pr-32"
@@ -65,7 +72,7 @@ function MarqueeRow({ direction = "left", speed = 35 }: { direction?: "left" | "
                         },
                     } : undefined}
                 >
-                    {logos.map((logo, i) => (
+                    {items.map((logo, i) => (
                         <div key={`a-${i}`} className="shrink-0 flex items-center justify-center">
                             {/* eslint-disable-next-line @next/next/no-img-element */}
                             <img
@@ -94,7 +101,7 @@ function MarqueeRow({ direction = "left", speed = 35 }: { direction?: "left" | "
                         },
                     } : undefined}
                 >
-                    {logos.map((logo, i) => (
+                    {items.map((logo, i) => (
                         <div key={`b-${i}`} className="shrink-0 flex items-center justify-center">
                             {/* eslint-disable-next-line @next/next/no-img-element */}
                             <img
@@ -131,8 +138,8 @@ export function TrustLogos() {
 
             {/* 2 rangées qui défilent */}
             <div className="space-y-12 md:space-y-20">
-                <MarqueeRow direction="left" speed={35} />
-                <MarqueeRow direction="right" speed={30} />
+                <MarqueeRow items={logosRow1} direction="left" speed={35} />
+                <MarqueeRow items={logosRow2} direction="right" speed={30} />
             </div>
         </section>
     );
