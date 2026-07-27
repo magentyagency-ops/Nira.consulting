@@ -76,7 +76,7 @@ export default function PolitiqueConfidentialite() {
                             <li>Droit d'opposition</li>
                         </ul>
                         <p className="mt-2">
-                            Pour exercer vos droits, contactez-nous à : <strong>contact@nira.consulting</strong>.
+                            Pour exercer vos droits, vous pouvez nous contacter via le formulaire de contact du site.
                         </p>
                     </section>
                 </div>

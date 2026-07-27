@@ -32,9 +32,6 @@ export default function MentionsLegales() {
                         <p className="mt-3">
                             <strong>SIRET :</strong> 951 653 476 00014
                         </p>
-                        <p className="mt-1">
-                            <strong>Contact :</strong> contact@nira.consulting
-                        </p>
                     </section>
 
                     <section className="space-y-4">
