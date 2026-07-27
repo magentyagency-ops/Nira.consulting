@@ -27,16 +27,14 @@ export default function MentionsLegales() {
                     <section className="bg-nira-blue-50/50 p-6 md:p-8 rounded-2xl border border-nira-blue-100">
                         <h2 className="text-xl font-semibold text-nira-dark mb-4">1. Éditeur du site</h2>
                         <p>
-                            Le site <strong>Nira Consulting</strong> est édité par la société <strong>NIRA CONSULTING</strong>.
+                            Le site <strong>Nira Consulting</strong> est édité par Nira Consulting.
                         </p>
-                        <ul className="list-disc list-inside mt-3 space-y-1">
-                            <li><strong>Forme juridique :</strong> Société par actions simplifiée (SAS / SASU)</li>
-                            <li><strong>Numéro SIRET :</strong> 951 653 476 00014</li>
-                            <li><strong>Numéro SIREN :</strong> 951 653 476</li>
-                            <li><strong>Siège social :</strong> Paris, France</li>
-                            <li><strong>Directeur de la publication :</strong> Nira Consulting</li>
-                            <li><strong>Contact :</strong> contact@nira.consulting</li>
-                        </ul>
+                        <p className="mt-3">
+                            <strong>SIRET :</strong> 951 653 476 00014
+                        </p>
+                        <p className="mt-1">
+                            <strong>Contact :</strong> contact@nira.consulting
+                        </p>
                     </section>
 
                     <section className="space-y-4">
