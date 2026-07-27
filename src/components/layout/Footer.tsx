@@ -23,10 +23,10 @@ export function Footer() {
                     <div>
                         <h4 className="font-semibold text-nira-dark mb-4">Agence</h4>
                         <ul className="space-y-3 text-sm text-nira-gray">
-                            <li><Link href="#" className="hover:text-nira-blue transition-colors">Notre approche</Link></li>
-                            <li><Link href="#" className="hover:text-nira-blue transition-colors">Cas d'usage</Link></li>
-                            <li><Link href="#" className="hover:text-nira-blue transition-colors">Études de cas</Link></li>
-                            <li><Link href="#" className="hover:text-nira-blue transition-colors">Pourquoi Nira ?</Link></li>
+                            <li><Link href="/#approche" className="hover:text-nira-blue transition-colors">Notre approche</Link></li>
+                            <li><Link href="/#cas-d-usage" className="hover:text-nira-blue transition-colors">Cas d'usage</Link></li>
+                            <li><Link href="/#impact" className="hover:text-nira-blue transition-colors">Impact & ROI</Link></li>
+                            <li><Link href="/#why-nira" className="hover:text-nira-blue transition-colors">Pourquoi Nira ?</Link></li>
                         </ul>
                     </div>
 
@@ -34,10 +34,10 @@ export function Footer() {
                     <div>
                         <h4 className="font-semibold text-nira-dark mb-4">Légal</h4>
                         <ul className="space-y-3 text-sm text-nira-gray">
-                            <li><Link href="#" className="hover:text-nira-blue transition-colors">Mentions légales</Link></li>
-                            <li><Link href="#" className="hover:text-nira-blue transition-colors">Politique de confidentialité</Link></li>
-                            <li><Link href="#" className="hover:text-nira-blue transition-colors">CGV</Link></li>
-                            <li><Link href="#" className="hover:text-nira-blue transition-colors">Contact</Link></li>
+                            <li><Link href="/mentions-legales" className="hover:text-nira-blue transition-colors">Mentions légales</Link></li>
+                            <li><Link href="/politique-de-confidentialite" className="hover:text-nira-blue transition-colors">Politique de confidentialité</Link></li>
+                            <li><Link href="/cgv" className="hover:text-nira-blue transition-colors">CGV</Link></li>
+                            <li><Link href="/#contact" className="hover:text-nira-blue transition-colors">Contact</Link></li>
                         </ul>
                     </div>
 
@@ -46,13 +46,13 @@ export function Footer() {
                         <h4 className="font-semibold text-nira-dark mb-4">Réseaux</h4>
                         <ul className="space-y-3 text-sm text-nira-gray">
                             <li>
-                                <a href="#" className="group flex items-center hover:text-nira-blue transition-colors">
+                                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="group flex items-center hover:text-nira-blue transition-colors">
                                     LinkedIn
                                     <ArrowUpRight className="w-3 h-3 ml-1 opacity-50 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
                                 </a>
                             </li>
                             <li>
-                                <a href="#" className="group flex items-center hover:text-nira-blue transition-colors">
+                                <a href="https://x.com" target="_blank" rel="noopener noreferrer" className="group flex items-center hover:text-nira-blue transition-colors">
                                     Twitter / X
                                     <ArrowUpRight className="w-3 h-3 ml-1 opacity-50 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
                                 </a>
