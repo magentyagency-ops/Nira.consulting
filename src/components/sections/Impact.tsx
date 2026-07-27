@@ -26,7 +26,7 @@ const impacts = [
 
 export function Impact() {
     return (
-        <section className="py-16 md:py-32 relative z-10">
+        <section id="impact" className="py-16 md:py-32 relative z-10">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
 
                 <motion.div

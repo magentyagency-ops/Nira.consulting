@@ -41,7 +41,7 @@ export function Approche() {
     });
 
     return (
-        <section className="py-16 md:py-32 relative border-t border-nira-gray/5">
+        <section id="approche" className="py-16 md:py-32 relative border-t border-nira-gray/5">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
 
                 <motion.div

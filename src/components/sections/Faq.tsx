@@ -64,7 +64,7 @@ export function Faq() {
     const [openIndex, setOpenIndex] = useState<number | null>(0); // Le premier est ouvert par défaut
 
     return (
-        <section className="py-16 md:py-32 relative">
+        <section id="faq" className="py-16 md:py-32 relative">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
 
                 <motion.div

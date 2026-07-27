@@ -55,7 +55,7 @@ export function FinalCta() {
         setIsSubmitting(false);
     };
     return (
-        <section className="py-16 md:py-32 relative overflow-hidden">
+        <section id="contact" className="py-16 md:py-32 relative overflow-hidden">
             {/* Dégradé radial subtil en arrière plan pour faire pop le formulaire */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl h-[600px] bg-nira-blue/5 blur-[120px] rounded-full pointer-events-none" />
 
