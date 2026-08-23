@@ -23,7 +23,7 @@ export function SimulationModal() {
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.95, y: 20 }}
                         transition={{ type: "spring", duration: 0.5, bounce: 0.2 }}
-                        className="relative w-full max-w-5xl bg-black rounded-3xl shadow-2xl overflow-hidden flex flex-col aspect-video border border-white/10"
+                        className="relative w-full max-w-md bg-black rounded-3xl shadow-2xl overflow-hidden flex flex-col aspect-[9/16] max-h-[85vh] border border-white/10 mx-auto"
                     >
                         <button
                             onClick={closeModal}
