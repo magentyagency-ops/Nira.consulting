@@ -18,7 +18,7 @@ export default function Home() {
       <LivingBlobBackground />
       <Navbar />
       <Hero />
-      <Impact />
+      {/* <Impact /> */}
       <Approche />
       <TrustLogos />
       <UseCases />
