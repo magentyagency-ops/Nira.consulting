@@ -36,7 +36,7 @@ export function SimulationModal() {
                             {/* NOTE: Pour l'instant, la vidéo est lue localement. 
                                 Dès qu'elle sera hébergée sur Vercel Blob, remplacez le 'src' par l'URL publique. */}
                             <video 
-                                src="/demo-video.mov" 
+                                src="https://ttkee5qurrk3aw45.public.blob.vercel-storage.com/demo-video.mov" 
                                 controls 
                                 autoPlay 
                                 className="w-full h-full object-contain bg-black"
