@@ -43,8 +43,7 @@ export function WhyNira() {
                                     alt="Alexandre Lin - Head of Tech & Innovation"
                                     fill
                                     priority
-                                    quality={85}
-                                    sizes="(max-width: 768px) 100vw, 384px"
+                                    unoptimized
                                     className="object-cover object-center grayscale group-hover:grayscale-0 transition-all duration-700"
                                 />
 
