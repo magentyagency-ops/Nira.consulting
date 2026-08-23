@@ -41,11 +41,12 @@ export function FinalCta() {
         const result = await submitAuditRequest(formData);
 
         if (result.success) {
-            toast.success("Demande d'audit envoyée !", {
-                description: "Nous avons bien reçu votre demande.",
+            toast.success("Redirection vers l'agenda...", {
+                description: "Veuillez choisir un créneau.",
                 icon: <Sparkles className="w-5 h-5 text-nira-blue" />
             });
             reset();
+            window.open('https://calendly.com/valentino-nira-ia/30min', '_blank');
         } else {
             toast.error("Oups, une erreur est survenue.", {
                 description: result.error,

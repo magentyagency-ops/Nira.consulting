@@ -108,7 +108,7 @@ export function Navbar() {
 
                     {/* CTAs */}
                     <motion.div variants={itemVariants} className="flex items-center gap-3">
-                        <Button variant="primary" size="md" className="hidden sm:flex text-sm" onClick={openModal}>
+                        <Button variant="primary" size="md" className="hidden sm:flex text-sm" onClick={() => window.open('https://calendly.com/valentino-nira-ia/30min', '_blank')}>
                             Demander un audit
                         </Button>
                         {/* Mobile Menu Button */}
@@ -178,7 +178,7 @@ export function Navbar() {
                                     className="w-full"
                                     onClick={() => {
                                         setMobileMenuOpen(false);
-                                        openModal();
+                                        window.open('https://calendly.com/valentino-nira-ia/30min', '_blank');
                                     }}
                                 >
                                     Demander un audit

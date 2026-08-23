@@ -6,6 +6,10 @@ import { ArrowLeft } from "lucide-react";
 export const metadata = {
     title: "Mentions Légales | Nira Consulting",
     description: "Mentions légales de Nira Consulting, agence d'automatisation et d'IA pour entreprises.",
+    robots: {
+        index: false,
+        follow: false
+    }
 };
 
 export default function MentionsLegales() {
