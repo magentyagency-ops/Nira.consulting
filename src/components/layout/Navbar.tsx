@@ -72,9 +72,6 @@ export function Navbar() {
                     {/* Logo */}
                     <motion.div variants={itemVariants}>
                         <Link href="/" className="flex items-center gap-2 group">
-                            <div className="w-7 h-7 md:w-8 md:h-8 rounded-lg bg-gradient-to-br from-nira-blue-600 to-nira-blue-400 flex items-center justify-center shadow-lg shadow-nira-blue-500/20 group-hover:scale-105 transition-transform duration-300">
-                                <div className="w-2.5 h-2.5 md:w-3 md:h-3 bg-white rounded-sm" />
-                            </div>
                             <span className="text-lg md:text-xl font-bold tracking-tight text-nira-dark">Nira</span>
                         </Link>
                     </motion.div>

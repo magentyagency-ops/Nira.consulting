@@ -11,7 +11,6 @@ export function Footer() {
                     {/* Colonne 1 : Marque */}
                     <div className="col-span-2 lg:col-span-1">
                         <Link href="/" className="text-xl md:text-2xl font-bold tracking-tighter text-nira-dark flex items-center gap-2 mb-3 md:mb-4">
-                            <span className="w-8 h-8 rounded-lg bg-nira-blue text-white flex items-center justify-center text-xl">N</span>
                             Nira.
                         </Link>
                         <p className="text-nira-gray text-xs md:text-sm leading-relaxed max-w-xs">
