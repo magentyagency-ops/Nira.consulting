@@ -1,60 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, Shield, Clock, Loader2, Sparkles } from "lucide-react";
+import { ArrowRight, Shield, Clock } from "lucide-react";
 import { Button } from "../ui/button";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
-import { useState } from "react";
-import { submitAuditRequest } from "@/app/actions/audit";
-import { toast } from "sonner";
-
-const formSchema = z.object({
-    name: z.string().min(2, "Le nom est trop court."),
-    email: z.string().email("Cet email n'est pas valide."),
-    company: z.string().optional(),
-});
-
-type FormData = z.infer<typeof formSchema>;
 
 export function FinalCta() {
-    const [isSubmitting, setIsSubmitting] = useState(false);
-
-    const {
-        register,
-        handleSubmit,
-        reset,
-        formState: { errors },
-    } = useForm<FormData>({
-        resolver: zodResolver(formSchema),
-    });
-
-    const onSubmit = async (data: FormData) => {
-        setIsSubmitting(true);
-
-        const formData = new FormData();
-        Object.entries(data).forEach(([key, value]) => {
-            if (value) formData.append(key, value);
-        });
-
-        const result = await submitAuditRequest(formData);
-
-        if (result.success) {
-            toast.success("Redirection vers l'agenda...", {
-                description: "Veuillez choisir un créneau.",
-                icon: <Sparkles className="w-5 h-5 text-nira-blue" />
-            });
-            reset();
-            window.open('https://calendly.com/valentino-nira-ia/30min', '_blank');
-        } else {
-            toast.error("Oups, une erreur est survenue.", {
-                description: result.error,
-            });
-        }
-
-        setIsSubmitting(false);
-    };
     return (
         <section id="contact" className="py-16 md:py-32 relative overflow-hidden">
             {/* Dégradé radial subtil en arrière plan pour faire pop le formulaire */}
@@ -70,105 +20,48 @@ export function FinalCta() {
                         </svg>
                     </div>
 
-                    <div className="flex flex-col lg:flex-row gap-8 lg:gap-20">
-
-                        {/* Colonne Texte */}
-                        <motion.div
-                            initial={{ opacity: 0, x: -30 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true, margin: "-100px" }}
-                            transition={{ duration: 0.6 }}
-                            className="w-full lg:w-5/12 text-white"
-                        >
-                            <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold tracking-tight mb-4 md:mb-6">
-                                Prêt à passer <br />
-                                <span className="text-nira-blue">à la vitesse supérieure ?</span>
-                            </h2>
-                            <p className="text-gray-400 text-base md:text-lg mb-8 md:mb-10 leading-relaxed">
-                                Les entreprises qui intègrent l'IA aujourd'hui prennent une avance décisive. Demandez votre audit gratuit de 30 minutes pour identifier vos gisements de productivité.
-                            </p>
-
-                            <div className="space-y-6">
-                                <div className="flex items-center gap-4 text-gray-300">
-                                    <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center shrink-0">
-                                        <Clock className="w-5 h-5 text-nira-blue" />
-                                    </div>
-                                    <span>Réponse sous 24h ouvrées</span>
-                                </div>
-                                <div className="flex items-center gap-4 text-gray-300">
-                                    <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center shrink-0">
-                                        <Shield className="w-5 h-5 text-nira-blue" />
-                                    </div>
-                                    <span>Confidentialité totale garantie</span>
-                                </div>
-                            </div>
-                        </motion.div>
-
-                        {/* Colonne Formulaire */}
+                    <div className="flex flex-col items-center text-center max-w-3xl mx-auto">
                         <motion.div
                             initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, margin: "-100px" }}
-                            transition={{ duration: 0.6, delay: 0.2 }}
-                            className="w-full lg:w-7/12"
+                            transition={{ duration: 0.6 }}
+                            className="w-full text-white"
                         >
-                            <form onSubmit={handleSubmit(onSubmit)} className="bg-white/90 backdrop-blur-md rounded-2xl md:rounded-3xl p-5 md:p-10 shadow-xl space-y-5 md:space-y-6 text-left">
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    <div className="space-y-2">
-                                        <label htmlFor="name" className="text-sm font-medium text-nira-dark">Prénom & Nom</label>
-                                        <input
-                                            {...register("name")}
-                                            type="text"
-                                            id="name"
-                                            className="w-full px-4 py-3 rounded-xl border border-nira-gray/20 bg-gray-50 text-nira-dark focus:outline-none focus:ring-2 focus:ring-nira-blue/50 focus:bg-white transition-colors"
-                                            placeholder="Jean Dupont"
-                                        />
-                                        {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name.message}</p>}
+                            <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4 md:mb-6">
+                                Prêt à passer <br className="hidden md:block" />
+                                <span className="text-nira-blue">à la vitesse supérieure ?</span>
+                            </h2>
+                            <p className="text-gray-400 text-base md:text-lg mb-8 md:mb-10 leading-relaxed max-w-2xl mx-auto">
+                                Les entreprises qui intègrent l'IA aujourd'hui prennent une avance décisive. Demandez votre audit gratuit de 30 minutes pour identifier vos gisements de productivité.
+                            </p>
+                            
+                            <Button 
+                                size="lg" 
+                                className="group w-full sm:w-auto text-base md:text-lg px-8 py-6 mb-10 md:mb-12"
+                                onClick={() => window.open('https://calendly.com/valentino-nira-ia/30min', '_blank')}
+                            >
+                                <span className="relative z-10 flex items-center justify-center gap-2">
+                                    Demander un audit gratuit
+                                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                                </span>
+                            </Button>
+
+                            <div className="flex flex-col sm:flex-row items-center justify-center gap-6 text-gray-300">
+                                <div className="flex items-center gap-3">
+                                    <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center shrink-0">
+                                        <Clock className="w-5 h-5 text-nira-blue" />
                                     </div>
-                                    <div className="space-y-2">
-                                        <label htmlFor="company" className="text-sm font-medium text-nira-dark">Entreprise</label>
-                                        <input
-                                            {...register("company")}
-                                            type="text"
-                                            id="company"
-                                            className="w-full px-4 py-3 rounded-xl border border-nira-gray/20 bg-gray-50 text-nira-dark focus:outline-none focus:ring-2 focus:ring-nira-blue/50 focus:bg-white transition-colors"
-                                            placeholder="Nom de la société"
-                                        />
+                                    <span className="text-sm">Réponse sous 24h ouvrées</span>
+                                </div>
+                                <div className="flex items-center gap-3">
+                                    <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center shrink-0">
+                                        <Shield className="w-5 h-5 text-nira-blue" />
                                     </div>
+                                    <span className="text-sm">Confidentialité totale garantie</span>
                                 </div>
-
-                                <div className="space-y-2">
-                                    <label htmlFor="email" className="text-sm font-medium text-nira-dark">Email professionnel</label>
-                                    <input
-                                        {...register("email")}
-                                        type="email"
-                                        id="email"
-                                        className="w-full px-4 py-3 rounded-xl border border-nira-gray/20 bg-gray-50 text-nira-dark focus:outline-none focus:ring-2 focus:ring-nira-blue/50 focus:bg-white transition-colors"
-                                        placeholder="jean@entreprise.com"
-                                    />
-                                    {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>}
-                                </div>
-
-
-
-                                <Button size="lg" className="w-full group" disabled={isSubmitting}>
-                                    <span className="relative z-10 flex items-center justify-center gap-2">
-                                        {isSubmitting ? (
-                                            <>
-                                                <Loader2 className="w-5 h-5 animate-spin" />
-                                                Envoi en cours...
-                                            </>
-                                        ) : (
-                                            <>
-                                                Demander un audit gratuit
-                                                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                                            </>
-                                        )}
-                                    </span>
-                                </Button>
-                            </form>
+                            </div>
                         </motion.div>
-
                     </div>
                 </div>
             </div>
